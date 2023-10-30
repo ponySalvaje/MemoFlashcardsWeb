@@ -1,0 +1,23 @@
+.questionnaire-card {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+  border-radius: 20px !important;
+  border-color: #fff !important;
+  box-shadow: 0px 0px 18px rgb(8 5 24 / 12%);
+  margin-bottom: 25px;
+}
+
+.questionnaire-card-body {
+  text-align: center;
+}
+
+.questionnaire-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.questionnaire-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}

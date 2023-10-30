@@ -1,0 +1,19 @@
+.card-benefit {
+  border: none !important;
+  margin-bottom: 20px;
+  border-radius: 0px !important;
+}
+
+.card-benefit-body {
+  padding: 45px 30px;
+}
+
+.card-benefit-title {
+  font-weight: bold !important;
+  text-align: left;
+}
+
+.card-benefit-text {
+  text-align: justify;
+  color: #000;
+}

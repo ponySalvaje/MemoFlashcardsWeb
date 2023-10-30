@@ -1,0 +1,14 @@
+#questionnaire {
+  padding: 50px 0px;
+}
+
+.list-top-flashcards {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.list-top-flashcards li {
+  margin-right: 15px;
+}

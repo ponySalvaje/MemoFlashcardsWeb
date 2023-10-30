@@ -1,0 +1,15 @@
+.suspend-card-header {
+  color: #fff !important;
+  background-color: #25228b !important;
+  font-weight: bold;
+  text-align: center;
+}
+
+.suspend-card-body {
+  text-align: justify;
+}
+
+.suspend-card-modal-buttons {
+  margin-top: 20px;
+  text-align: center;
+}

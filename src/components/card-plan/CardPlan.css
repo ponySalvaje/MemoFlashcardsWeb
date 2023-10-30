@@ -1,0 +1,19 @@
+.card-plan {
+  max-width: 400px;
+  min-height: 500px;
+  margin: auto;
+}
+
+.card-plan-header {
+  color: #fff !important;
+  background-color: #25228b !important;
+  font-weight: bold;
+  text-align: center;
+}
+
+.card-plan-sticky {
+  margin-top: 10px;
+  color: #fff;
+  background-color: #25228b;
+  text-align: center;
+}

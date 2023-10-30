@@ -1,0 +1,41 @@
+footer {
+  background-color: #e2e1ea;
+  overflow: hidden;
+  padding: 40px 0 0;
+}
+
+footer .bottom-footer {
+  background: #c6c4d0;
+  text-align: center;
+  color: #070518;
+  padding: 15px 0;
+  font-size: 12px;
+  margin-top: 40px;
+}
+
+footer a {
+  color: #070518;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+footer ul {
+  margin-bottom: 0;
+  list-style: none;
+}
+
+footer ul li {
+  padding: 5px 0;
+}
+
+#social-media > a {
+  margin: 0px 10px;
+}
+
+.footer-container {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  min-height: 0;
+  padding: 0 15px;
+}

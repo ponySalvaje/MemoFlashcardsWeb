@@ -1,0 +1,10 @@
+.help-div {
+  min-height: 100px;
+}
+
+.card-help-header {
+  color: #fff !important;
+  background-color: #25228b !important;
+  font-weight: bold;
+  text-align: center;
+}
