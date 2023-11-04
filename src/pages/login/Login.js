@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Col, Form, Button, Card, Row } from "react-bootstrap";
+import { Col, Form, Button, Card, Row, Spinner, Alert } from "react-bootstrap";
 import "./Login.css";
 import { useLogin } from "../../hooks/useLogin";
 import { useNavigate } from "react-router-dom";
@@ -23,7 +23,6 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
     await login(email, password);
   };
 
@@ -39,6 +38,13 @@ const Login = () => {
                 </div>
 
                 <div className="login-inputs">
+                  {error && (
+                    <Alert variant="danger" dismissible>
+                      <b>¡Ups! Algo salió mal.</b>
+                      <br />
+                      Estas credenciales no coinciden con nuestros registros.
+                    </Alert>
+                  )}
                   <Form.Group
                     className="form-group"
                     xs={12}
@@ -101,8 +107,13 @@ const Login = () => {
                     type="submit"
                     variant="main"
                     style={{ width: "100%" }}
+                    disabled={isLoading}
                   >
-                    Iniciar sesión
+                    {isLoading ? (
+                      <Spinner animation="border" variant="white" size="sm" />
+                    ) : (
+                      <span>Iniciar sesión</span>
+                    )}
                   </Button>
                 </div>
               </Form>

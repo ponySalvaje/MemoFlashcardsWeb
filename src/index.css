@@ -25,3 +25,8 @@ body {
   border-color: #0d1c33 !important;
   box-shadow: #d9e8ff !important;
 }
+
+.btn-close:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}

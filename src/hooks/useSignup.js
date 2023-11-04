@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
 import { register } from "../api/auth.api";
 import { storeUserData } from "../services/indexedDB/userService";
+import { storeToken } from "../services/indexedDB/tokenService";
 
 export const useSignup = () => {
   const [error, setError] = useState(null);

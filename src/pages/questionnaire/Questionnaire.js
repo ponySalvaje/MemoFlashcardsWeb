@@ -110,7 +110,7 @@ function Questionnaire() {
                     />
                   </Col>
                 </Row>
-                {isFlipped && cards.length > 0 ? (
+                {isFlipped && cards.length > 0 && (
                   <Row className="justify-content-center pt-4">
                     <Col xs={12} sm={6} md={6} lg={6}>
                       <AdditionalInformation
@@ -118,8 +118,6 @@ function Questionnaire() {
                       />
                     </Col>
                   </Row>
-                ) : (
-                  <></>
                 )}
               </Container>
               <SuspendCardModal
@@ -128,14 +126,12 @@ function Questionnaire() {
                 handleCloseSuspendCardModal={handleCloseSuspendCardModal}
                 handleSuspendCard={handleSuspendCard}
               />
-              {cards.length > 0 ? (
+              {cards.length > 0 && (
                 <QuestionHelpModal
                   showQuestionHelpModal={showQuestionHelpModal}
                   handleCloseQuestionHelpModal={handleCloseQuestionHelpModal}
                   helpContent={cards[currentCard].help}
                 />
-              ) : (
-                <></>
               )}
             </>
           )}
