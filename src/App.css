@@ -86,3 +86,7 @@ h5 {
   --bs-text-opacity: 1;
   color: #25228b !important;
 }
+
+.progress {
+  margin-top: 5px;
+}

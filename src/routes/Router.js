@@ -10,6 +10,7 @@ import FAQ from "../pages/faq/FAQ";
 import TermsAndConditions from "../pages/terms-and-conditions/TermsAndConditions";
 import { createBrowserRouter } from "react-router-dom";
 import Protected from "./Protected";
+import MyProgress from "../pages/my-progress/MyProgress";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
         <Questionnaire />
       </Protected>
     ),
+  },
+  {
+    path: "/my-progress",
+    element: <MyProgress />,
   },
   {
     path: "/find-cards",

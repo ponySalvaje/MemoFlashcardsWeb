@@ -1,0 +1,7 @@
+#my-progress {
+  padding: 50px 0px;
+}
+
+.progress-tab .nav-link:not(.active) {
+  color: #25228b !important;
+}
