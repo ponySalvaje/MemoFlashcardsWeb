@@ -1,5 +1,6 @@
 .progress-item {
   padding: 10px;
+  cursor: pointer;
 }
 
 .free-cards-indicator {

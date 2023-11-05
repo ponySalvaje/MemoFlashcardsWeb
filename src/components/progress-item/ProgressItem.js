@@ -1,15 +1,21 @@
 import { Col, ProgressBar, Row } from "react-bootstrap";
 import "./ProgressItem.css";
+import progressItemRoles from "../../common/constants/progressItemRoles";
 
-const ProgressItem = ({ item, onPress }) => {
+const ProgressItem = ({ item, role, onClick }) => {
   return (
-    <div className="progress-item">
+    <div className="progress-item" onClick={onClick}>
       <div>
         <Row>
           <div>
             <b>{item.subjectName}</b>
             <span className="free-cards-indicator">
-              {item.cardAmount} tarjetas gratuitas
+              {item.cardAmount} tarjetas{" "}
+              {role === progressItemRoles.reviewed
+                ? "gratuitas"
+                : role === progressItemRoles.suspended
+                ? "suspendidas"
+                : ""}
             </span>
           </div>
         </Row>

@@ -1,0 +1,20 @@
+#suspended {
+  padding: 50px 0px;
+}
+
+.unsuspend-all-button {
+  margin-top: 10px;
+}
+
+.memo-character-img {
+  width: 100%;
+  height: auto;
+}
+
+.unsuspend-all {
+  padding-top: 20px;
+}
+
+.unsuspend-all-title {
+  font-size: 20px;
+}

@@ -1,14 +1,23 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { getProgress } from "../../api/progress.api";
 import Loading from "../loading/Loading";
 import ProgressItem from "../progress-item/ProgressItem";
+import { useNavigate } from "react-router-dom";
+import progressItemRoles from "../../common/constants/progressItemRoles";
 
 const ProgressReviewed = () => {
   const [progress, setProgress] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const loadSpecialties = async () => {
+  const navigate = useNavigate();
+
+  const goToTopic = (progressItem) => {
+    navigate("/topics/" + progressItem.lessonId, {
+      state: { specialtyName: progressItem.subjectName },
+    });
+  };
+
+  const loadProgressReviewed = async () => {
     try {
       const progressData = (await getProgress()).data;
       setProgress(progressData);
@@ -20,7 +29,7 @@ const ProgressReviewed = () => {
   };
 
   useEffect(() => {
-    loadSpecialties();
+    loadProgressReviewed();
   }, []);
 
   return (
@@ -28,11 +37,12 @@ const ProgressReviewed = () => {
       {loading ? (
         <Loading />
       ) : (
-        progress.map((progress) => (
+        progress.map((progressItem) => (
           <ProgressItem
-            key={progress.subjectName}
-            item={progress}
-            onPress={progress}
+            key={progressItem.subjectName}
+            item={progressItem}
+            role={progressItemRoles.reviewed}
+            onClick={() => goToTopic(progressItem)}
           />
         ))
       )}

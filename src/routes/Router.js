@@ -11,6 +11,7 @@ import TermsAndConditions from "../pages/terms-and-conditions/TermsAndConditions
 import { createBrowserRouter } from "react-router-dom";
 import Protected from "./Protected";
 import MyProgress from "../pages/my-progress/MyProgress";
+import Suspended from "../pages/suspended/Suspended";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
   {
     path: "/my-progress",
     element: <MyProgress />,
+  },
+  {
+    path: "/suspended/:id",
+    element: <Suspended />,
   },
   {
     path: "/find-cards",
