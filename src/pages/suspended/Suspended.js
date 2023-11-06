@@ -1,8 +1,8 @@
-import { Container, Row, Col, Button, Image } from "react-bootstrap";
+import { Container, Row, Col, Button, Image, Spinner } from "react-bootstrap";
 import "./Suspended.css";
 import Loading from "../../components/loading/Loading";
 import { useState, useEffect } from "react";
-import { getSuspendedGroups } from "../../api/progress.api";
+import { getSuspendedGroups, postBulkUnsuspend } from "../../api/progress.api";
 import { useLocation, useParams } from "react-router-dom";
 import SuspendedGroup from "../../components/suspended-group/SuspendedGroup";
 import memoCharacter from "../../assets/images/character_image.png";
@@ -10,6 +10,7 @@ import memoCharacter from "../../assets/images/character_image.png";
 const Suspended = () => {
   const [suspendedGroups, setSuspendedGroups] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [loadingBulk, setLoadingBulk] = useState(false);
   const { id } = useParams();
   const location = useLocation();
   const specialtyName = location.state && location.state.specialtyName;
@@ -28,6 +29,18 @@ const Suspended = () => {
   useEffect(() => {
     loadSuspended();
   }, []);
+
+  const handleUnsuspendAll = async () => {
+    setLoadingBulk(true);
+    try {
+      await postBulkUnsuspend(id);
+      await loadSuspended();
+    } catch (error) {
+      console.error("Error unsuspending all cards:", error);
+    } finally {
+      setLoadingBulk(false);
+    }
+  };
 
   return (
     <section id="suspended">
@@ -48,6 +61,7 @@ const Suspended = () => {
                     <SuspendedGroup
                       key={suspendedGroupItem.subjectId}
                       item={suspendedGroupItem}
+                      callback={loadSuspended}
                     />
                   );
                 })}
@@ -64,7 +78,17 @@ const Suspended = () => {
                   ¿Buscando un nuevo comienzo en {specialtyName}?
                 </span>
                 <div className="unsuspend-all-button">
-                  <Button variant="main">Habilitar todas</Button>
+                  <Button
+                    variant="main"
+                    onClick={handleUnsuspendAll}
+                    disabled={loadingBulk}
+                  >
+                    {loadingBulk ? (
+                      <Spinner animation="border" variant="white" size="sm" />
+                    ) : (
+                      <span>Habilitar todas</span>
+                    )}
+                  </Button>
                 </div>
               </Col>
             </Row>

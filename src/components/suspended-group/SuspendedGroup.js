@@ -1,9 +1,7 @@
-import { Row, Col, Button } from "react-bootstrap";
 import "./SuspendedGroup.css";
+import SuspendedCardItem from "../suspended-card-item/SuspendedCardItem";
 
-const SuspendedGroup = ({ item }) => {
-  const unsuspendCard = (cardId) => {};
-
+const SuspendedGroup = ({ item, callback }) => {
   return (
     <div className="suspended-group">
       <div>
@@ -13,21 +11,11 @@ const SuspendedGroup = ({ item }) => {
       </div>
       {item.suspendedCards.map((card) => {
         return (
-          <div key={card.cardId} className="suspended-item">
-            <Row key={card.cardId}>
-              <Col xs={6} md={6}>
-                <span className="suspended-card-name">{card.cardName}</span>
-              </Col>
-              <Col xs={6} md={6} className="text-center">
-                <Button
-                  variant="main"
-                  onClick={() => unsuspendCard(card.cardId)}
-                >
-                  Habilitar
-                </Button>
-              </Col>
-            </Row>
-          </div>
+          <SuspendedCardItem
+            key={card.cardId}
+            card={card}
+            callback={callback}
+          />
         );
       })}
     </div>
