@@ -1,0 +1,33 @@
+#features {
+  background-color: #e0f8fe;
+}
+
+.features-col-first {
+  padding: 100px 0px;
+}
+
+.features-col-second {
+  padding: 0px 0px;
+}
+
+.features-title {
+  color: #000 !important;
+}
+
+.img-features {
+  position: absolute;
+  top: 100px;
+  max-height: 400px;
+}
+
+.features-col-second {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-download-app {
+  width: 200px;
+  height: 60px;
+  cursor: pointer;
+}
