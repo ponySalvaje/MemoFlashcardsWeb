@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
 import { Row, Col, Container, Carousel } from "react-bootstrap";
 import { Fade } from "react-reveal";
+import { isMobile } from "react-device-detect";
 import "./WhyUsSection.css";
 import CardBenefit from "../../components/card-benefit/CardBenefit";
 
@@ -22,20 +22,6 @@ function WhyUsSection() {
       backgroundColor: "#1DB8D9",
     },
   ];
-
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    window.addEventListener("resize", handleResize);
-    handleResize();
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   return (
     <section id="why-us">

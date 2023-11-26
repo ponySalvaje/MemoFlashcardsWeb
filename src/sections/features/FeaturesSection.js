@@ -1,6 +1,6 @@
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Fade } from "react-reveal";
-import { isAndroid, isIOS } from "react-device-detect";
+import { isAndroid, isIOS, isMobile } from "react-device-detect";
 import screenshotApp from "../../assets/images/screenshot_app.png";
 import playStoreButton from "../../assets/images/google_plasytore_icon.png";
 import appStoreButton from "../../assets/images/app_store_icon.png";
@@ -21,7 +21,15 @@ function FeaturesSection() {
     <section id="features">
       <Container>
         <Row>
-          <Col lg={6} md={6} className="content-item features-col-first">
+          <Col
+            lg={6}
+            md={12}
+            className={`content-item ${
+              !isMobile
+                ? "features-col-first-large-padding"
+                : "features-col-first-small-padding"
+            }`}
+          >
             <Fade left>
               <h2 className="features-title">
                 La forma más fácil de aprender Medicina.
@@ -39,7 +47,7 @@ function FeaturesSection() {
               </Button>
             </Fade>
           </Col>
-          <Col lg={3} md={6} className="content-item features-col-second">
+          <Col lg={3} md={3} className="content-item features-col-second">
             <Fade right>
               <div>
                 {isAndroid && (
@@ -85,15 +93,17 @@ function FeaturesSection() {
               </div>
             </Fade>
           </Col>
-          <Col lg={3} md={6} className="content-item features-col-second">
-            <Fade right>
-              <img
-                src={screenshotApp}
-                className="img-fluid img-features"
-                alt="Memoflashcards screenshot"
-              />
-            </Fade>
-          </Col>
+          {!isMobile && (
+            <Col lg={3} md={3} className="content-item features-col-third">
+              <Fade right>
+                <img
+                  src={screenshotApp}
+                  className="img-fluid img-features"
+                  alt="Memoflashcards screenshot"
+                />
+              </Fade>
+            </Col>
+          )}
         </Row>
       </Container>
     </section>

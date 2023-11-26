@@ -2,12 +2,16 @@
   background-color: #e0f8fe;
 }
 
-.features-col-first {
+.features-col-first-large-padding {
   padding: 100px 0px;
 }
 
+.features-col-first-small-padding {
+  padding: 30px 0px;
+}
+
 .features-col-second {
-  padding: 0px 0px;
+  padding: 20px 0px;
 }
 
 .features-title {
@@ -27,7 +31,7 @@
 }
 
 .img-download-app {
-  width: 200px;
-  height: 60px;
+  width: 200px !important;
+  height: 60px !important;
   cursor: pointer;
 }
