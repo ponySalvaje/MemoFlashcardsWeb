@@ -1,5 +1,6 @@
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Fade } from "react-reveal";
+import laptopSpecialties from "../../assets/images/laptop_specialties.png";
 import "./BenefitsSection.css";
 
 function BenefitsSection() {
@@ -32,9 +33,9 @@ function BenefitsSection() {
           <Col lg={6} md={6} className="content-item">
             <Fade right>
               <img
-                src="https://www.memoflashcards.com/img/img-laptop-corto.png"
+                src={laptopSpecialties}
                 className="img-fluid img-benefits"
-                alt=""
+                alt="Especialidades"
               />
             </Fade>
           </Col>

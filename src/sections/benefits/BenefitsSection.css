@@ -1,6 +1,6 @@
 #benefits {
   padding: 50px 0px;
-  background-color: #25228b;
+  background-color: #392eb8;
 }
 
 .benefits-col {
@@ -11,6 +11,7 @@
 .benefits-title {
   margin-top: 30px;
   font-size: 30px;
+  font-weight: bold;
   color: #fff !important;
 }
 

@@ -18,7 +18,7 @@ const CardSpecialty = ({
   return (
     <Card className="specialty-card" onClick={goToTopic}>
       <Card.Body className="specialty-card-body">
-        <img src={imageUrl} alt={title} width="35px" />
+        <img src={imageUrl} alt={title} height="50px" />
         <h5 className="mt-3 card-title">
           <strong>{title}</strong>
         </h5>

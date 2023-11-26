@@ -6,6 +6,7 @@ import { faEnvelope, faMobileAlt } from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebookSquare,
   faInstagram,
+  faTiktok,
 } from "@fortawesome/free-brands-svg-icons";
 
 function Footer() {
@@ -17,7 +18,7 @@ function Footer() {
             <img alt="Memo Logo" src={blackLogo} width={70} height={70} />
           </Col>
           <Col xs={12} sm={3} md={3} lg={3}>
-            <ul>
+            <ul className="footer-ul">
               <li>
                 <a href="/home">Inicio</a>
               </li>
@@ -27,7 +28,7 @@ function Footer() {
             </ul>
           </Col>
           <Col xs={12} sm={3} md={3} lg={3}>
-            <ul>
+            <ul className="footer-ul">
               <li>
                 <a href="/FAQ">Preguntas frecuentes</a>
               </li>
@@ -49,12 +50,18 @@ function Footer() {
                 href="https://www.instagram.com/memo_flashcards/"
                 target="_blank"
                 rel="noreferrer"
-                className="instagram"
               >
                 <FontAwesomeIcon size="lg" icon={faInstagram} />
               </a>
+              <a
+                href="https://www.tiktok.com/@memoflashcards"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FontAwesomeIcon size="lg" icon={faTiktok} />
+              </a>
             </div>
-            <ul>
+            <ul className="footer-ul">
               <li>
                 <a
                   href="mailto:memoflashcard.correo@gmail.com"

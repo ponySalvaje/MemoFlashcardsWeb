@@ -6,26 +6,48 @@
   font-weight: 600;
 }
 
+h2 {
+  color: #392eb8 !important;
+  font-weight: bold !important;
+}
+
 h3 {
-  color: #25228b !important;
+  color: #392eb8 !important;
   font-weight: 700 !important;
 }
 
 h5 {
-  color: #25228b !important;
+  color: #392eb8 !important;
   font-weight: 700 !important;
 }
 
+.bg-main {
+  --bs-bg-opacity: 1;
+  background-color: #392eb8 !important;
+}
+
+.nav-link {
+  color: #fff !important;
+}
+
+.navbar-toggler {
+  border-color: #fff !important;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 30 30%27%3e%3cpath stroke=%27rgba%28255, 255, 255, 1%29%27 stroke-linecap=%27round%27 stroke-miterlimit=%2710%27 stroke-width=%272%27 d=%27M4 7h22M4 15h22M4 23h22%27/%3e%3c/svg%3e") !important;
+}
+
 .btn-main {
-  background-color: #25228b !important;
+  background-color: #392eb8 !important;
   color: #fff !important;
   font-size: 18px !important;
   font-weight: 700 !important;
 }
 
 .btn-second {
-  background-color: #63a7b0 !important;
-  color: #fff !important;
+  background-color: #51d3e4 !important;
+  color: #000 !important;
   font-size: 18px !important;
   font-weight: 700 !important;
 }
@@ -43,7 +65,7 @@ h5 {
 }
 
 .option-link {
-  color: #25228b !important;
+  color: #392eb8 !important;
 }
 
 .form-group {
@@ -51,7 +73,7 @@ h5 {
 }
 
 .main-color {
-  color: #25228b !important;
+  color: #392eb8 !important;
 }
 
 .btn-easy {
@@ -84,7 +106,7 @@ h5 {
 
 .text-main {
   --bs-text-opacity: 1;
-  color: #25228b !important;
+  color: #392eb8 !important;
 }
 
 .progress {

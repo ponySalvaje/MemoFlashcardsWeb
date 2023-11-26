@@ -2,7 +2,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 
-import mainLogo from "../../assets/logo/logo_main_color.png";
+import whiteLogo from "../../assets/logo/logo_white.png";
 import "./Header.css";
 import { useLogout } from "../../hooks/useLogout";
 import { useAuthContext } from "../../hooks/useAuthContext";
@@ -27,10 +27,10 @@ function NavigationBar() {
   };
 
   return (
-    <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
+    <Navbar bg="main" variant="dark" expand="lg" sticky="top">
       <Container>
         <Navbar.Brand href="#home">
-          <img alt="Memo Logo" src={mainLogo} width={60} height={60} />
+          <img alt="Memo Logo" src={whiteLogo} width={60} height={60} />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navigationbar-nav" />
         <Navbar.Collapse id="navigationbar-nav">
