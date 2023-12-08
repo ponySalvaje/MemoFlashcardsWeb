@@ -40,74 +40,70 @@ const Profile = () => {
         {loading ? (
           <Loading />
         ) : (
-          <>
-            <Row>
-              <Col xs={12} sm={12} md={12} lg={12}>
-                <Container>
-                  <Row>
-                    <Col lg={9} className="mx-auto">
-                      <div className="section-title text-left mt-4 mb-1">
-                        <h3 style={{ padding: 0 }}>
-                          ¡Hola, {profileInfo.name}!
-                        </h3>
-                      </div>
-                      <Accordion defaultActiveKey="0">
-                        <Accordion.Item eventKey="0">
-                          <Accordion.Header>
-                            <FontAwesomeIcon
-                              size="lg"
-                              className="fai-profile-accordion"
-                              icon={faContactCard}
-                            />
-                            <span className="accordion-header-profile-title">
-                              Información de contacto
+          <Row>
+            <Col xs={12} sm={12} md={12} lg={12}>
+              <Container>
+                <Row>
+                  <Col lg={9} className="mx-auto">
+                    <div className="section-title text-left mt-4 mb-1">
+                      <h3 style={{ padding: 0 }}>¡Hola, {profileInfo.name}!</h3>
+                    </div>
+                    <Accordion defaultActiveKey="0">
+                      <Accordion.Item eventKey="0">
+                        <Accordion.Header>
+                          <FontAwesomeIcon
+                            size="lg"
+                            className="fai-profile-accordion"
+                            icon={faContactCard}
+                          />
+                          <span className="accordion-header-profile-title">
+                            Información de contacto
+                          </span>
+                        </Accordion.Header>
+                        <Accordion.Body>
+                          <ContactInformation
+                            email={email}
+                            fullname={fullname}
+                          />
+                        </Accordion.Body>
+                      </Accordion.Item>
+                      <Accordion.Item eventKey="1">
+                        <Accordion.Header>
+                          <FontAwesomeIcon
+                            size="lg"
+                            className="fai-profile-accordion"
+                            icon={faMoneyBill1}
+                          />
+                          <span className="accordion-header-profile-title">
+                            Planes de pago{" "}
+                            <span className="main-sticky badge fw-600 rounded-pill">
+                              Plan {profileInfo.currentPlan}
                             </span>
-                          </Accordion.Header>
-                          <Accordion.Body>
-                            <ContactInformation
-                              email={email}
-                              fullname={fullname}
-                            />
-                          </Accordion.Body>
-                        </Accordion.Item>
-                        <Accordion.Item eventKey="1">
-                          <Accordion.Header>
-                            <FontAwesomeIcon
-                              size="lg"
-                              className="fai-profile-accordion"
-                              icon={faMoneyBill1}
-                            />
-                            <span className="accordion-header-profile-title">
-                              Planes de pago{" "}
-                              <span className="main-sticky badge fw-600 rounded-pill">
-                                Plan {profileInfo.currentPlan}
-                              </span>
-                            </span>
-                          </Accordion.Header>
-                          <Accordion.Body></Accordion.Body>
-                        </Accordion.Item>
-                        <Accordion.Item eventKey="2">
-                          <Accordion.Header>
-                            <FontAwesomeIcon
-                              size="lg"
-                              className="fai-profile-accordion"
-                              icon={faLock}
-                            />
-                            <span className="accordion-header-profile-title">
-                              Mi contraseña
-                            </span>
-                          </Accordion.Header>
-                          <Accordion.Body>
-                            <ChangePassword />
-                          </Accordion.Body>
-                        </Accordion.Item>
-                      </Accordion>
-                    </Col>
-                  </Row>
-                </Container>
-              </Col>
-            </Row>
-          </>
+                          </span>
+                        </Accordion.Header>
+                        <Accordion.Body></Accordion.Body>
+                      </Accordion.Item>
+                      <Accordion.Item eventKey="2">
+                        <Accordion.Header>
+                          <FontAwesomeIcon
+                            size="lg"
+                            className="fai-profile-accordion"
+                            icon={faLock}
+                          />
+                          <span className="accordion-header-profile-title">
+                            Mi contraseña
+                          </span>
+                        </Accordion.Header>
+                        <Accordion.Body>
+                          <ChangePassword />
+                        </Accordion.Body>
+                      </Accordion.Item>
+                    </Accordion>
+                  </Col>
+                </Row>
+              </Container>
+            </Col>
+          </Row>
         )}
       </section>
     </Container>

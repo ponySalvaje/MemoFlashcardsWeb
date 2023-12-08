@@ -27,25 +27,29 @@ function QuestionnaireDone({
           </Card>
         </Col>
       </Row>
-      <div className="mt-5 mb-2 text-center">
-        <h3 className="mb-3">Temas relacionados</h3>
-        <p className="section-description">
-          Puedes navegar por los {relatedTopics.length} temas de estudio o usar
-          el buscador para encontrar el flashcard que desees.
-        </p>
-      </div>
-      <Row xs={2} sm={2} md={3} lg={4} className="g-4">
-        {relatedTopics.map((topic) => (
-          <Col key={topic.id} className="h-100">
-            <CardTopic
-              title={topic.title}
-              freeQuantity={topic.free}
-              premiumQuantity={topic.premium}
-              id={topic.id}
-            />
-          </Col>
-        ))}
-      </Row>
+      {relatedTopics.length !== 0 && (
+        <>
+          <div className="mt-5 mb-2 text-center">
+            <h3 className="mb-3">Temas relacionados</h3>
+            <p className="section-description">
+              Puedes navegar por los {relatedTopics.length} temas de estudio o
+              usar el buscador para encontrar el flashcard que desees.
+            </p>
+          </div>
+          <Row xs={2} sm={2} md={3} lg={4} className="g-4">
+            {relatedTopics.map((topic) => (
+              <Col key={topic.id} className="h-100">
+                <CardTopic
+                  title={topic.title}
+                  freeQuantity={topic.free}
+                  premiumQuantity={topic.premium}
+                  id={topic.id}
+                />
+              </Col>
+            ))}
+          </Row>
+        </>
+      )}
     </Container>
   );
 }
