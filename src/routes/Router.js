@@ -12,6 +12,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Protected from "./Protected";
 import MyProgress from "../pages/my-progress/MyProgress";
 import Suspended from "../pages/suspended/Suspended";
+import Profile from "../pages/profile/Profile";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
   },
   {
     path: "/register",

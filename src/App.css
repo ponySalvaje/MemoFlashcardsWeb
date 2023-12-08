@@ -26,7 +26,7 @@ h5 {
   background-color: #392eb8 !important;
 }
 
-.nav-link {
+a.nav-link {
   color: #fff !important;
 }
 
@@ -115,4 +115,8 @@ h5 {
 
 .p-t-20 {
   padding-top: 20px;
+}
+
+.main-sticky {
+  background-color: #392eb8;
 }

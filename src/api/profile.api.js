@@ -7,3 +7,8 @@ export function getProfileInformation() {
   const url = `${PROFILE_URL}`;
   return APIMiddleware.get(url);
 }
+
+export function updateProfileInformation(name) {
+  const url = `${PROFILE_URL}`;
+  return APIMiddleware.put(url, { data: { name } });
+}

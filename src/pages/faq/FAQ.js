@@ -5,7 +5,7 @@ import "./FAQ.css";
 const FAQ = () => {
   return (
     <Container>
-      <section id="how-it-works">
+      <section id="faq">
         <Row>
           <Col xs={12} sm={12} md={12} lg={12}>
             <Container>
