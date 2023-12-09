@@ -120,3 +120,7 @@ a.nav-link {
 .main-sticky {
   background-color: #392eb8;
 }
+
+.hidden {
+  visibility: hidden !important;
+}

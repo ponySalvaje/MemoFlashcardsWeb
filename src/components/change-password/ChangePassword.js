@@ -38,7 +38,7 @@ const ChangePassword = () => {
           name="currentPassword"
           maxLength="100"
           value={currentPassword}
-          autoComplete="current-password"
+          autoComplete="new-password"
           onChange={(e) => setCurrentPassword(e.target.value)}
         />
       </Form.Group>

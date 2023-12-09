@@ -13,6 +13,8 @@ import Protected from "./Protected";
 import MyProgress from "../pages/my-progress/MyProgress";
 import Suspended from "../pages/suspended/Suspended";
 import Profile from "../pages/profile/Profile";
+import PlansSection from "../sections/plans/PlansSection";
+import Subscription from "../pages/subscription/Subscription";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +30,10 @@ const router = createBrowserRouter([
     element: <Specialties />,
   },
   {
+    path: "/plans",
+    element: <PlansSection />,
+  },
+  {
     path: "/topics/:id",
     element: <Topics />,
   },
@@ -40,8 +46,20 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: "/subscription/:id",
+    element: (
+      <Protected>
+        <Subscription />
+      </Protected>
+    ),
+  },
+  {
     path: "/my-progress",
-    element: <MyProgress />,
+    element: (
+      <Protected>
+        <MyProgress />
+      </Protected>
+    ),
   },
   {
     path: "/suspended/:id",

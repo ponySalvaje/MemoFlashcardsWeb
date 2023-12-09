@@ -10,6 +10,9 @@ import QuestionnaireDone from "../../components/questionnaire-done/Questionnaire
 import { getCards } from "../../api/cards.api";
 import { useLocation, useParams } from "react-router-dom";
 import Loading from "../../components/loading/Loading";
+import { getProfileInformation } from "../../api/profile.api";
+import UpgradePlan from "../../components/upgrade-plan/UpgradePlan";
+import { roles } from "../../common/constants/roles";
 
 function Questionnaire() {
   const [currentCard, setCurrentCard] = useState(0);
@@ -18,6 +21,7 @@ function Questionnaire() {
   const [showSuspendCardModal, setShowSuspendCardModal] = useState(false);
   const [showQuestionHelpModal, setShowQuestionHelpModal] = useState(false);
   const [cards, setCards] = useState([]);
+  const [profileInfo, setProfileInfo] = useState();
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
   const location = useLocation();
@@ -30,13 +34,31 @@ function Questionnaire() {
       setCards(cardsData);
     } catch (error) {
       console.error("Error loading cards:", error);
+    }
+  };
+
+  const loadProfileInformation = async () => {
+    try {
+      const profileData = (await getProfileInformation()).data;
+      setProfileInfo(profileData);
+    } catch (error) {
+      console.error("Error loading profile information:", error);
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    loadCards();
+    const fetchData = async () => {
+      try {
+        await loadCards();
+        await loadProfileInformation();
+      } catch (error) {
+        console.error("Error loading information:", error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   const handleFlip = () => {
@@ -80,13 +102,17 @@ function Questionnaire() {
         <Loading />
       ) : (
         <>
-          {currentCard === cards.length ? (
-            <QuestionnaireDone
-              topicName={topicName}
-              completedCards={cards.length}
-              suspendedCards={suspendCardsCount}
-              relatedTopics={relatedTopics}
-            />
+          {currentCard === cards.length && profileInfo ? (
+            profileInfo.currentPlan === roles.free ? (
+              <UpgradePlan />
+            ) : (
+              <QuestionnaireDone
+                topicName={topicName}
+                completedCards={cards.length}
+                suspendedCards={suspendCardsCount}
+                relatedTopics={relatedTopics}
+              />
+            )
           ) : (
             <>
               <Container fluid>

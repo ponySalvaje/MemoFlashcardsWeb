@@ -2,6 +2,7 @@
   max-width: 400px;
   min-height: 500px;
   margin: auto;
+  border-color: #b9eaf5 !important;
 }
 
 .card-plan-header {
@@ -16,4 +17,24 @@
   color: #fff;
   background-color: #392eb8;
   text-align: center;
+}
+
+.advantage-text {
+  margin-left: 10px;
+}
+
+.advantage-icon {
+  color: #b9eaf5;
+}
+
+.advantage-item {
+  border-color: #b9eaf5 !important;
+}
+
+.advantage-item-disabled {
+  opacity: 0.5;
+}
+
+.advantage-text-disabled {
+  color: #b9eaf5;
 }
