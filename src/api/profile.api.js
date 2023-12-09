@@ -12,3 +12,8 @@ export function updateProfileInformation(name) {
   const url = `${PROFILE_URL}`;
   return APIMiddleware.put(url, { data: { name } });
 }
+
+export function upgradePremium(data, engagementTime) {
+  const url = `${PROFILE_URL}/upgrade`;
+  return APIMiddleware.post(url, { data: { data, engagementTime } });
+}

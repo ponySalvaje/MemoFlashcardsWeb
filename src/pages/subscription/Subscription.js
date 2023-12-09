@@ -10,8 +10,6 @@ const Subscription = () => {
 
   const [selectedPlan, setSelectedPlan] = useState(filteredPlan);
 
-  console.log("filteredPlan: ", filteredPlan);
-
   return (
     <section id="subscription">
       <div className="mt-4 mb-2 text-center section-title">

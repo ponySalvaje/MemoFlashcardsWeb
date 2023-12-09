@@ -15,6 +15,7 @@ export const plans = [
     id: 2,
     planName: "Plan Mensual",
     price: 25,
+    months: 1,
     frequency: "1 mes",
     advantages: [
       "300 mazos desbloqueados",
@@ -29,6 +30,7 @@ export const plans = [
     id: 3,
     planName: "Plan Trimestral",
     price: 60,
+    months: 3,
     frequency: "3 meses",
     advantages: [
       "300 mazos desbloqueados",
@@ -43,6 +45,7 @@ export const plans = [
     id: 4,
     planName: "Plan Semestral",
     price: 100,
+    months: 6,
     frequency: "6 meses",
     advantages: [
       "300 mazos desbloqueados",
@@ -57,6 +60,7 @@ export const plans = [
     id: 5,
     planName: "Plan Anual",
     price: 180,
+    months: 12,
     frequency: "1 año",
     advantages: [
       "300 mazos desbloqueados",

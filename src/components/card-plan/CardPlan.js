@@ -3,11 +3,13 @@ import "./CardPlan.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import CulqiPaymentGateway from "../culqi-payment-gateway/CulqiPaymentGateway";
 
 function CardPlan({
   id,
   planName,
   price,
+  months,
   frequency,
   advantages,
   disabledAdvantages,
@@ -64,9 +66,7 @@ function CardPlan({
               </Button>
             </Link>
           ) : (
-            <Button variant="main" className="btn my-1">
-              Adquirir plan
-            </Button>
+            <CulqiPaymentGateway amount={price} months={months} />
           )}
         </div>
       </Card.Body>

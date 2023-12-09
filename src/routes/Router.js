@@ -15,6 +15,7 @@ import Suspended from "../pages/suspended/Suspended";
 import Profile from "../pages/profile/Profile";
 import PlansSection from "../sections/plans/PlansSection";
 import Subscription from "../pages/subscription/Subscription";
+import CulqiResult from "../components/culqi-result/CulqiResult";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,14 @@ const router = createBrowserRouter([
     element: (
       <Protected>
         <Subscription />
+      </Protected>
+    ),
+  },
+  {
+    path: "/culqi-result",
+    element: (
+      <Protected>
+        <CulqiResult />
       </Protected>
     ),
   },
