@@ -16,33 +16,34 @@ import Profile from "../pages/profile/Profile";
 import PlansSection from "../sections/plans/PlansSection";
 import Subscription from "../pages/subscription/Subscription";
 import CulqiResult from "../components/culqi-result/CulqiResult";
+import PageContainer from "./PageContainer";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <PageContainer element={<Home />} />,
   },
   {
     path: "/home",
-    element: <Home />,
+    element: <PageContainer element={<Home />} />,
   },
   {
     path: "/specialties",
-    element: <Specialties />,
+    element: <PageContainer element={<Specialties />} />,
   },
   {
     path: "/plans",
-    element: <PlansSection />,
+    element: <PageContainer element={<PlansSection />} />,
   },
   {
     path: "/topics/:id",
-    element: <Topics />,
+    element: <PageContainer element={<Topics />} />,
   },
   {
     path: "/questionnaire/:id",
     element: (
       <Protected>
-        <Questionnaire />
+        <PageContainer element={<Questionnaire />} hideFooter={true} />
       </Protected>
     ),
   },
@@ -50,7 +51,7 @@ const router = createBrowserRouter([
     path: "/subscription/:id",
     element: (
       <Protected>
-        <Subscription />
+        <PageContainer element={<Subscription />} />
       </Protected>
     ),
   },
@@ -58,7 +59,7 @@ const router = createBrowserRouter([
     path: "/culqi-result",
     element: (
       <Protected>
-        <CulqiResult />
+        <PageContainer element={<CulqiResult />} />
       </Protected>
     ),
   },
@@ -66,45 +67,45 @@ const router = createBrowserRouter([
     path: "/my-progress",
     element: (
       <Protected>
-        <MyProgress />
+        <PageContainer element={<MyProgress />} />
       </Protected>
     ),
   },
   {
     path: "/suspended/:id",
-    element: <Suspended />,
+    element: <PageContainer element={<Suspended />} />,
   },
   {
     path: "/find-cards",
-    element: <FindCards />,
+    element: <PageContainer element={<FindCards />} />,
   },
   {
     path: "/login",
-    element: <Login />,
+    element: <PageContainer element={<Login />} />,
   },
   {
     path: "/profile",
     element: (
       <Protected>
-        <Profile />
+        <PageContainer element={<Profile />} />
       </Protected>
     ),
   },
   {
     path: "/register",
-    element: <Register />,
+    element: <PageContainer element={<Register />} />,
   },
   {
     path: "/how-it-works",
-    element: <HowItWorks />,
+    element: <PageContainer element={<HowItWorks />} />,
   },
   {
     path: "/faq",
-    element: <FAQ />,
+    element: <PageContainer element={<FAQ />} />,
   },
   {
     path: "/terms-and-conditions",
-    element: <TermsAndConditions />,
+    element: <PageContainer element={<TermsAndConditions />} />,
   },
 ]);
 

@@ -9,7 +9,7 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 import { NavDropdown } from "react-bootstrap";
 import { useEffect, useState } from "react";
 
-function NavigationBar() {
+function Header() {
   const { logout } = useLogout();
 
   const { user } = useAuthContext();
@@ -63,4 +63,4 @@ function NavigationBar() {
   );
 }
 
-export default NavigationBar;
+export default Header;
