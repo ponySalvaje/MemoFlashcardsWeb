@@ -12,7 +12,7 @@ function PlansSection() {
           ti.
         </p>
       </div>
-      <Plans plans={plans} />
+      <Plans plans={plans} message={"Comenzar ahora"} />
     </section>
   );
 }

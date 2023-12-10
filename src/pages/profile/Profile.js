@@ -9,6 +9,8 @@ import { faContactCard, faLock } from "@fortawesome/free-solid-svg-icons";
 import { faMoneyBill1 } from "@fortawesome/free-regular-svg-icons";
 import ContactInformation from "../../components/contact-information/ContactInformation";
 import ChangePassword from "../../components/change-password/ChangePassword";
+import { plans } from "../../common/constants/plans";
+import Plans from "../../components/plans/Plans";
 
 const Profile = () => {
   const [profileInfo, setProfileInfo] = useState();
@@ -81,7 +83,16 @@ const Profile = () => {
                             </span>
                           </span>
                         </Accordion.Header>
-                        <Accordion.Body></Accordion.Body>
+                        <Accordion.Body>
+                          <Plans
+                            plans={plans.filter((p) => p.id !== 1)}
+                            message={
+                              profileInfo.currentPlan === "Free"
+                                ? "Comenzar ahora"
+                                : "Extender plan"
+                            }
+                          />
+                        </Accordion.Body>
                       </Accordion.Item>
                       <Accordion.Item eventKey="2">
                         <Accordion.Header>

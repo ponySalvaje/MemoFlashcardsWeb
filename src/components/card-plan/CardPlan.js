@@ -14,6 +14,7 @@ function CardPlan({
   advantages,
   disabledAdvantages,
   payment = false,
+  message,
 }) {
   const subscriptionUrl = id === 1 ? "/specialties" : `/subscription/${id}`;
 
@@ -62,7 +63,7 @@ function CardPlan({
           {!payment ? (
             <Link to={subscriptionUrl}>
               <Button variant="main" className="btn my-1">
-                Comenzar ahora
+                {message}
               </Button>
             </Link>
           ) : (

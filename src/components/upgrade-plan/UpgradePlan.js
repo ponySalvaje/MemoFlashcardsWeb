@@ -13,7 +13,10 @@ const UpgradePlan = () => {
         </p>
       </div>
       <div>
-        <Plans plans={plans.filter((p) => p.id !== 1)} />
+        <Plans
+          plans={plans.filter((p) => p.id !== 1)}
+          message={"Comenzar ahora"}
+        />
       </div>
     </section>
   );

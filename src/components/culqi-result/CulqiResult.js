@@ -2,7 +2,6 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./CulqiResult.css";
 import { useLogout } from "../../hooks/useLogout";
-import { useAuthContext } from "../../hooks/useAuthContext";
 
 const CulqiResult = () => {
   const { logout } = useLogout();
