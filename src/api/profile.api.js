@@ -17,3 +17,8 @@ export function upgradePremium(data, engagementTime) {
   const url = `${PROFILE_URL}/upgrade`;
   return APIMiddleware.post(url, { data: { data, engagementTime } });
 }
+
+export function changePassword(currentPassword, newPassword) {
+  const url = `${PROFILE_URL}/change-password`;
+  return APIMiddleware.post(url, { data: { currentPassword, newPassword } });
+}

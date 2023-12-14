@@ -10,5 +10,5 @@ export function getCards(topicId) {
 
 export function searchCards() {
   const url = `${CARDS_URL}/search`;
-  return APIMiddleware.get(url);
+  return APIMiddleware.get(url, { noAuthToken: true });
 }

@@ -46,7 +46,7 @@ const CulqiPaymentGateway = ({ amount, months }) => {
         await upgradePlan(token, months);
       }}
       onError={(error) => {
-        goToCulqiResult(false, error);
+        goToCulqiResult(false, error.user_message);
       }}
     >
       <Culqi>

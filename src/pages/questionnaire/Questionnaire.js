@@ -115,7 +115,7 @@ function Questionnaire() {
             )
           ) : (
             <>
-              <Container fluid>
+              <Container fluid className="p-3">
                 <QuestionnaireDetails
                   topicName={topicName}
                   currentCard={currentCard}
