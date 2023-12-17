@@ -16,8 +16,11 @@ export const useLogin = () => {
     try {
       const response = await signIn(email, password);
       await storeToken(response.token);
-      await storeUserData(response.fullName);
-      dispatch({ type: "LOGIN", payload: [response.token, response.fullName] });
+      await storeUserData({ fullName: response.fullName, role: response.role });
+      dispatch({
+        type: "LOGIN",
+        payload: [response.token, response.fullName, response.role],
+      });
       setIsLoading(false);
     } catch (ex) {
       setIsLoading(false);

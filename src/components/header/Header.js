@@ -49,6 +49,14 @@ function Header() {
           ) : (
             <Nav className="navigationbar-options">
               <NavDropdown title={userData[1]} id="navbarScrollingDropdown">
+                {userData[2] === "Admin" && (
+                  <>
+                    <NavDropdown.Item href="/profile">
+                      Administración
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider />
+                  </>
+                )}
                 <NavDropdown.Item href="/profile">Mi Perfil</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item onClick={handleLogout}>

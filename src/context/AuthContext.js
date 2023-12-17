@@ -23,10 +23,13 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       const token = await getToken();
-      const fullName = await getUserData();
+      const userData = await getUserData();
 
-      if (token && fullName) {
-        dispatch({ type: "LOGIN", payload: [token, fullName] });
+      if (token && userData) {
+        dispatch({
+          type: "LOGIN",
+          payload: [token, userData.fullName, userData.role],
+        });
       }
     };
 
