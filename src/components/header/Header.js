@@ -29,7 +29,7 @@ function Header() {
   return (
     <Navbar bg="main" variant="dark" expand="lg" sticky="top">
       <Container>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="/home">
           <img alt="Memo Logo" src={whiteLogo} width={60} height={60} />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navigationbar-nav" />

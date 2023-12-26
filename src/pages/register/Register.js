@@ -5,6 +5,8 @@ import { universities } from "../../common/constants/universities";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useNavigate } from "react-router-dom";
 import { useSignup } from "../../hooks/useSignup";
+import imageSkyBlue from "../../assets/images/background_image_skyblue.png";
+import imageWhite from "../../assets/images/background_image_white.png";
 
 const Register = () => {
   const [fullName, setFullName] = useState("");
@@ -14,12 +16,23 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const [backgroundIndex, setBackgroundIndex] = useState(0);
+
+  const backgrounds = [`url(${imageSkyBlue})`, `url(${imageWhite})`];
 
   const { signup, error, isLoading } = useSignup();
 
   const { user } = useAuthContext();
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setBackgroundIndex((prevIndex) => (prevIndex + 1) % backgrounds.length);
+    }, 5000);
+
+    return () => clearInterval(intervalId);
+  }, [backgrounds.length]);
 
   useEffect(() => {
     if (user) {
@@ -54,7 +67,13 @@ const Register = () => {
   };
 
   return (
-    <section id="register">
+    <section
+      id="register"
+      style={{
+        backgroundImage: backgrounds[backgroundIndex],
+        transition: "background-image 1s ease-in-out",
+      }}
+    >
       <Row className="justify-content-center pt-4">
         <Col xs={12} md={6} lg={4}>
           <Card className="shadow-sm mb-4">

@@ -4,16 +4,29 @@ import "./Login.css";
 import { useLogin } from "../../hooks/useLogin";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import imageSkyBlue from "../../assets/images/background_image_skyblue.png";
+import imageWhite from "../../assets/images/background_image_white.png";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [backgroundIndex, setBackgroundIndex] = useState(0);
+
+  const backgrounds = [`url(${imageSkyBlue})`, `url(${imageWhite})`];
 
   const { login, error, isLoading } = useLogin();
 
   const { user } = useAuthContext();
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setBackgroundIndex((prevIndex) => (prevIndex + 1) % backgrounds.length);
+    }, 5000);
+
+    return () => clearInterval(intervalId);
+  }, [backgrounds.length]);
 
   useEffect(() => {
     if (user) {
@@ -27,7 +40,13 @@ const Login = () => {
   };
 
   return (
-    <section id="login">
+    <section
+      id="login"
+      style={{
+        backgroundImage: backgrounds[backgroundIndex],
+        transition: "background-image 1s ease-in-out",
+      }}
+    >
       <Row className="justify-content-center pt-4">
         <Col xs={12} md={6} lg={4}>
           <Card className="shadow-sm mb-4">
