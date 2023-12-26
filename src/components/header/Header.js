@@ -51,7 +51,7 @@ function Header() {
               <NavDropdown title={userData[1]} id="navbarScrollingDropdown">
                 {userData[2] === "Admin" && (
                   <>
-                    <NavDropdown.Item href="/profile">
+                    <NavDropdown.Item href="/admin/specialties">
                       Administración
                     </NavDropdown.Item>
                     <NavDropdown.Divider />

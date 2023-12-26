@@ -17,6 +17,7 @@ import PlansSection from "../sections/plans/PlansSection";
 import Subscription from "../pages/subscription/Subscription";
 import CulqiResult from "../components/culqi-result/CulqiResult";
 import PageContainer from "./PageContainer";
+import AdminSpecialties from "../pages/admin/specialties/AdminSpecialties";
 
 const router = createBrowserRouter([
   {
@@ -106,6 +107,10 @@ const router = createBrowserRouter([
   {
     path: "/terms-and-conditions",
     element: <PageContainer element={<TermsAndConditions />} />,
+  },
+  {
+    path: "/admin/specialties",
+    element: <AdminSpecialties />,
   },
 ]);
 

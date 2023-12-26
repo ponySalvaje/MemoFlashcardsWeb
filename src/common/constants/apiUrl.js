@@ -8,4 +8,7 @@ export const apiUrls = {
   CARDS_URL: `${BASE_URL}/cards`,
   SCORE_URL: `${BASE_URL}/score`,
   PROFILE_URL: `${BASE_URL}/profile`,
+  ADMIN_SPECIALTIES_URL: `${BASE_URL}/admin/lessons`,
+  ADMIN_TOPICS_URL: `${BASE_URL}/admin/topics`,
+  ADMIN_CARDS_URL: `${BASE_URL}/admin/cards`,
 };
