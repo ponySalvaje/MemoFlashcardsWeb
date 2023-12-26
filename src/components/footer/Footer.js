@@ -2,11 +2,12 @@ import "./Footer.css";
 import { Row, Col } from "react-bootstrap";
 import blackLogo from "../../assets/logo/logo_black.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faMobileAlt } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebookSquare,
   faInstagram,
   faTiktok,
+  faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
 
 function Footer() {
@@ -74,12 +75,12 @@ function Footer() {
               </li>
               <li>
                 <a
-                  href="https://api.whatsapp.com/send?phone=51936280102"
+                  href="https://api.whatsapp.com/send?phone=51973442591"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <FontAwesomeIcon size="lg" icon={faMobileAlt} />
-                  <span> +51 936 280 102</span>
+                  <FontAwesomeIcon size="lg" icon={faWhatsapp} />
+                  <span> +51 973 442 501</span>
                 </a>
               </li>
             </ul>

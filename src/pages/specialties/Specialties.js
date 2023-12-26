@@ -40,7 +40,7 @@ function Specialties() {
             </div>
             <Row xs={2} sm={2} md={3} lg={4} className="g-4">
               {specialties.map((specialty) => (
-                <Col key={specialty.id} className="h-100">
+                <Col key={specialty.id}>
                   <CardSpecialty
                     imageUrl={specialty.photo}
                     title={specialty.title}

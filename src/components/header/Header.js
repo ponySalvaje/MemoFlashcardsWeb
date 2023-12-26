@@ -37,7 +37,7 @@ function Header() {
           <Nav className="me-auto navigationbar-options">
             <Nav.Link href="/home">Inicio</Nav.Link>
             <Nav.Link href="/plans">Planes</Nav.Link>
-            <Nav.Link href="/specialties">Clases</Nav.Link>
+            <Nav.Link href="/specialties">Especialidades</Nav.Link>
             {userData && <Nav.Link href="/my-progress">Mis Clases</Nav.Link>}
             <Nav.Link href="/find-cards">Buscar Flashcards</Nav.Link>
           </Nav>

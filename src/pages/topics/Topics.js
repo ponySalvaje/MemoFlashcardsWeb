@@ -13,20 +13,20 @@ function Topics() {
   const location = useLocation();
   const specialtyName = location.state && location.state.specialtyName;
 
-  const loadTopics = async () => {
-    try {
-      const topicsData = (await getTopics(id)).data.content;
-      setTopics(topicsData);
-    } catch (error) {
-      console.error("Error loading topics:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const loadTopics = async () => {
+      try {
+        const topicsData = (await getTopics(id)).data.content;
+        setTopics(topicsData);
+      } catch (error) {
+        console.error("Error loading topics:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     loadTopics();
-  }, []);
+  }, [id]);
 
   return (
     <section id="topics">
@@ -43,7 +43,7 @@ function Topics() {
             </div>
             <Row xs={2} sm={2} md={3} lg={4} className="g-4">
               {topics.map((topic) => (
-                <Col key={topic.id} className="h-100">
+                <Col key={topic.id}>
                   <CardTopic
                     title={topic.title}
                     freeQuantity={topic.free}
