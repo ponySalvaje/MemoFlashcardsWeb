@@ -18,6 +18,8 @@ import Subscription from "../pages/subscription/Subscription";
 import CulqiResult from "../components/culqi-result/CulqiResult";
 import PageContainer from "./PageContainer";
 import AdminSpecialties from "../pages/admin/specialties/AdminSpecialties";
+import AdminTopics from "../pages/admin/topics/AdminTopics";
+import AdminCards from "../pages/admin/cards/AdminCards";
 
 const router = createBrowserRouter([
   {
@@ -111,6 +113,14 @@ const router = createBrowserRouter([
   {
     path: "/admin/specialties",
     element: <AdminSpecialties />,
+  },
+  {
+    path: "/admin/topics/:id",
+    element: <AdminTopics />,
+  },
+  {
+    path: "/admin/cards/:id",
+    element: <AdminCards />,
   },
 ]);
 

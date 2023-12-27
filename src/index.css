@@ -36,3 +36,14 @@ body {
   flex-direction: column;
   min-height: 100vh;
 }
+
+.active > .page-link,
+.page-link.active {
+  color: #fff !important;
+  background-color: #392eb8 !important;
+  border-color: #392eb8 !important;
+}
+
+.page-link {
+  color: #392eb8 !important;
+}
