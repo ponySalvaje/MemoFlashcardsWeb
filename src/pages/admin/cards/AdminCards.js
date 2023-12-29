@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { getAdminCards } from "../../../api/admin.api";
+import { getAdminCards } from "../../../api/admin.card.api";
 import { Container, Table } from "react-bootstrap";
 import Loading from "../../../components/loading/Loading";
 import Paginator from "../../../components/paginator/Paginator";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./AdminCards.css";
 import TableActionButtons from "../../../components/table-action-buttons/TableActionButtons";
 
@@ -14,14 +14,12 @@ const AdminCards = () => {
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [maxPagesToShow] = useState(5);
 
+  const navigate = useNavigate();
+
   const { id } = useParams();
 
-  const handleView = (id) => {
-    console.log("handle view: ", id);
-  };
-
   const handleEdit = (id) => {
-    console.log("handle edit: ", id);
+    navigate(`/admin/cards/save/${id}`);
   };
 
   const handleDelete = (id) => {

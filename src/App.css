@@ -124,3 +124,8 @@ a.nav-link {
 .hidden {
   visibility: hidden !important;
 }
+
+.form-check-input:checked {
+  background-color: #392eb8 !important;
+  border-color: #392eb8 !important;
+}

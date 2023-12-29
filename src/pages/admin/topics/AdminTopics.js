@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getAdminTopics } from "../../../api/admin.api";
+import { getAdminTopics } from "../../../api/admin.topic.api";
 import { Container, Table } from "react-bootstrap";
 import Loading from "../../../components/loading/Loading";
 import Paginator from "../../../components/paginator/Paginator";
@@ -22,7 +22,7 @@ const AdminTopics = () => {
   };
 
   const handleEdit = (id) => {
-    console.log("handle edit: ", id);
+    navigate(`/admin/topics/save/${id}`);
   };
 
   const handleDelete = (id) => {
@@ -81,7 +81,7 @@ const AdminTopics = () => {
             <thead>
               <tr>
                 <th>#</th>
-                <th>Especialidad</th>
+                <th>Tema</th>
                 <th>Tarjetas</th>
                 <th>Acciones</th>
               </tr>

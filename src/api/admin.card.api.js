@@ -1,0 +1,28 @@
+import { APIMiddleware } from "../middleware/APIMiddleware";
+import { apiUrls } from "../common/constants/apiUrl";
+
+const { ADMIN_CARDS_URL } = apiUrls;
+
+export function getAdminCards(id) {
+  const url = `${ADMIN_CARDS_URL}/list/${id}`;
+  return APIMiddleware.get(url);
+}
+
+export function getAdminCard(id) {
+  const url = `${ADMIN_CARDS_URL}/${id}`;
+  return APIMiddleware.get(url);
+}
+
+export function updateAdminCard(id, card) {
+  const url = `${ADMIN_CARDS_URL}/${id}`;
+  return APIMiddleware.put(url, {
+    data: {
+      subjectId: card.subjectId,
+      title: card.title,
+      question: card.question,
+      answer: card.answer,
+      help: card.answer,
+      isFree: card.isFree,
+    },
+  });
+}

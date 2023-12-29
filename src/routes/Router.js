@@ -8,7 +8,6 @@ import Register from "../pages/register/Register";
 import HowItWorks from "../pages/how-it-works/HowItWorks";
 import FAQ from "../pages/faq/FAQ";
 import TermsAndConditions from "../pages/terms-and-conditions/TermsAndConditions";
-import { createBrowserRouter } from "react-router-dom";
 import Protected from "./Protected";
 import MyProgress from "../pages/my-progress/MyProgress";
 import Suspended from "../pages/suspended/Suspended";
@@ -20,6 +19,10 @@ import PageContainer from "./PageContainer";
 import AdminSpecialties from "../pages/admin/specialties/AdminSpecialties";
 import AdminTopics from "../pages/admin/topics/AdminTopics";
 import AdminCards from "../pages/admin/cards/AdminCards";
+import AdminSpecialtiesSave from "../pages/admin/specialties/AdminSpecialtiesSave";
+import { createBrowserRouter } from "react-router-dom";
+import AdminTopicsSave from "../pages/admin/topics/AdminTopicsSave";
+import AdminCardsSave from "../pages/admin/cards/AdminCardsSave";
 
 const router = createBrowserRouter([
   {
@@ -115,12 +118,24 @@ const router = createBrowserRouter([
     element: <AdminSpecialties />,
   },
   {
+    path: "/admin/specialties/save/:id",
+    element: <AdminSpecialtiesSave />,
+  },
+  {
     path: "/admin/topics/:id",
     element: <AdminTopics />,
   },
   {
+    path: "/admin/topics/save/:id",
+    element: <AdminTopicsSave />,
+  },
+  {
     path: "/admin/cards/:id",
     element: <AdminCards />,
+  },
+  {
+    path: "/admin/cards/save/:id",
+    element: <AdminCardsSave />,
   },
 ]);
 

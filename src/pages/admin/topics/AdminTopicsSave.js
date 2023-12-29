@@ -1,0 +1,38 @@
+import { useEffect, useState } from "react";
+import { Container } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import { getAdminTopic } from "../../../api/admin.topic.api";
+import AdminTopicForm from "./AdminTopicForm";
+import Loading from "../../../components/loading/Loading";
+
+const AdminTopicsSave = () => {
+  const [topic, setTopic] = useState();
+  const [loading, setLoading] = useState(true);
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    const loadTopic = async (id) => {
+      try {
+        const topicData = (await getAdminTopic(id)).data;
+        setTopic(topicData);
+      } catch (error) {
+        console.error("Error loading topics:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadTopic(id);
+  }, [id]);
+
+  return loading ? (
+    <Loading />
+  ) : (
+    <Container>
+      <AdminTopicForm id={id} lessonId={topic.lessonId} name={topic.title} />
+    </Container>
+  );
+};
+
+export default AdminTopicsSave;

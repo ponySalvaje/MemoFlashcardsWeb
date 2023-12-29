@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getAdminSpecialties } from "../../../api/admin.api";
+import { getAdminSpecialties } from "../../../api/admin.specialty.api";
 import { Container, Table } from "react-bootstrap";
 import Loading from "../../../components/loading/Loading";
 import Paginator from "../../../components/paginator/Paginator";
@@ -20,7 +20,7 @@ const AdminSpecialties = () => {
   };
 
   const handleEdit = (id) => {
-    console.log("handle edit: ", id);
+    navigate(`/admin/specialties/save/${id}`);
   };
 
   const handleDelete = (id) => {
