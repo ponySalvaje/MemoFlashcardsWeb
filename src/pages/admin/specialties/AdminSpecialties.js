@@ -1,17 +1,15 @@
 import { useState, useEffect } from "react";
 import { getAdminSpecialties } from "../../../api/admin.specialty.api";
-import { Container, Table } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import Loading from "../../../components/loading/Loading";
-import Paginator from "../../../components/paginator/Paginator";
 import { useNavigate } from "react-router-dom";
 import TableActionButtons from "../../../components/table-action-buttons/TableActionButtons";
+import DataTable from "../../../components/data-table/DataTable";
+import DataTableTitle from "../../../components/data-table-title/DataTableTitle";
 
 const AdminSpecialties = () => {
   const [specialties, setSpecialties] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
-  const [maxPagesToShow] = useState(5);
 
   const navigate = useNavigate();
 
@@ -25,6 +23,10 @@ const AdminSpecialties = () => {
 
   const handleDelete = (id) => {
     console.log("handle delete: ", id);
+  };
+
+  const handleCreateSpecialty = () => {
+    navigate(`/admin/specialties/save/`);
   };
 
   const loadSpecialties = async () => {
@@ -42,7 +44,15 @@ const AdminSpecialties = () => {
     loadSpecialties();
   }, []);
 
-  const renderSpecialties = () => {
+  const specialtiesHeaders = ["#", "Especialidad", "Temas", "Acciones"];
+
+  const renderSpecialties = (
+    page,
+    itemsPerPage,
+    handleView,
+    handleEdit,
+    handleDelete
+  ) => {
     const indexOfLastItem = page * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentSpecialties = specialties.slice(
@@ -67,33 +77,24 @@ const AdminSpecialties = () => {
     ));
   };
 
-  const handlePaginationClick = (newPage) => {
-    setPage(newPage);
-  };
-
   return (
     <Container>
       {loading ? (
         <Loading />
       ) : (
         <>
-          <Table responsive striped bordered hover>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Especialidad</th>
-                <th>Temas</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>{renderSpecialties()}</tbody>
-          </Table>
-          <Paginator
-            page={page}
-            maxPagesToShow={maxPagesToShow}
+          <DataTableTitle
+            title="Especialidades"
+            action="Crear Especialidad"
+            onClick={handleCreateSpecialty}
+          />
+          <DataTable
+            headers={specialtiesHeaders}
+            renderData={renderSpecialties}
             itemsCount={specialties.length}
-            itemsPerPage={itemsPerPage}
-            handlePaginationClick={handlePaginationClick}
+            handleView={handleView}
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}
           />
         </>
       )}

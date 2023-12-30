@@ -113,6 +113,14 @@ a.nav-link {
   margin-top: 5px;
 }
 
+.no-margin {
+  margin: 0px !important;
+}
+
+.m-l-5 {
+  margin-left: 5px;
+}
+
 .p-t-20 {
   padding-top: 20px;
 }
@@ -128,4 +136,9 @@ a.nav-link {
 .form-check-input:checked {
   background-color: #392eb8 !important;
   border-color: #392eb8 !important;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  background-color: #392eb8 !important;
 }

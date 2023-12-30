@@ -1,17 +1,15 @@
 import { useState, useEffect } from "react";
 import { getAdminTopics } from "../../../api/admin.topic.api";
-import { Container, Table } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import Loading from "../../../components/loading/Loading";
-import Paginator from "../../../components/paginator/Paginator";
 import { useNavigate, useParams } from "react-router-dom";
 import TableActionButtons from "../../../components/table-action-buttons/TableActionButtons";
+import DataTable from "../../../components/data-table/DataTable";
+import DataTableTitle from "../../../components/data-table-title/DataTableTitle";
 
 const AdminTopics = () => {
   const [topics, setTopics] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
-  const [maxPagesToShow] = useState(5);
 
   const { id } = useParams();
 
@@ -29,12 +27,15 @@ const AdminTopics = () => {
     console.log("handle delete: ", id);
   };
 
+  const handleCreateTopic = () => {
+    navigate(`/admin/topics/save/`);
+  };
+
   useEffect(() => {
     const loadTopics = async (id) => {
       try {
         const topicsData = (await getAdminTopics(id)).data;
         setTopics(topicsData);
-        console.log("topicsData: ", topicsData);
       } catch (error) {
         console.error("Error loading topics:", error);
       } finally {
@@ -45,7 +46,15 @@ const AdminTopics = () => {
     loadTopics(id);
   }, [id]);
 
-  const renderTopics = () => {
+  const topicsHeaders = ["#", "Tema", "Tarjetas", "Acciones"];
+
+  const renderTopics = (
+    page,
+    itemsPerPage,
+    handleView,
+    handleEdit,
+    handleDelete
+  ) => {
     const indexOfLastItem = page * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentTopics = topics.slice(indexOfFirstItem, indexOfLastItem);
@@ -67,33 +76,24 @@ const AdminTopics = () => {
     ));
   };
 
-  const handlePaginationClick = (newPage) => {
-    setPage(newPage);
-  };
-
   return (
     <Container>
       {loading ? (
         <Loading />
       ) : (
         <>
-          <Table responsive striped bordered hover>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Tema</th>
-                <th>Tarjetas</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>{renderTopics()}</tbody>
-          </Table>
-          <Paginator
-            page={page}
-            maxPagesToShow={maxPagesToShow}
+          <DataTableTitle
+            title="Temas"
+            action="Crear Tema"
+            onClick={handleCreateTopic}
+          />
+          <DataTable
+            headers={topicsHeaders}
+            renderData={renderTopics}
             itemsCount={topics.length}
-            itemsPerPage={itemsPerPage}
-            handlePaginationClick={handlePaginationClick}
+            handleView={handleView}
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}
           />
         </>
       )}

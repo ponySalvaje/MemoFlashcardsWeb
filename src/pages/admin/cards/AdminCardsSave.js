@@ -23,7 +23,11 @@ const AdminCardsSave = () => {
       }
     };
 
-    loadCard(id);
+    if (id) {
+      loadCard(id);
+    } else {
+      setLoading(false);
+    }
   }, [id]);
 
   return loading ? (
@@ -32,12 +36,12 @@ const AdminCardsSave = () => {
     <Container>
       <AdminCardForm
         id={id}
-        subjectId={card.subjectId}
-        name={card.title}
-        premium={!card.isFree}
-        question={card.question}
-        answer={card.answer}
-        help={card.help}
+        subjectId={card ? card.subjectId : ""}
+        name={card ? card.title : ""}
+        premium={card ? !card.isFree : ""}
+        question={card ? card.question : ""}
+        answer={card ? card.answer : ""}
+        help={card ? card.help : ""}
       />
     </Container>
   );

@@ -1,18 +1,16 @@
 import { useState, useEffect } from "react";
 import { getAdminCards } from "../../../api/admin.card.api";
-import { Container, Table } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import Loading from "../../../components/loading/Loading";
-import Paginator from "../../../components/paginator/Paginator";
 import { useNavigate, useParams } from "react-router-dom";
 import "./AdminCards.css";
 import TableActionButtons from "../../../components/table-action-buttons/TableActionButtons";
+import DataTable from "../../../components/data-table/DataTable";
+import DataTableTitle from "../../../components/data-table-title/DataTableTitle";
 
 const AdminCards = () => {
   const [cards, setCards] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
-  const [maxPagesToShow] = useState(5);
 
   const navigate = useNavigate();
 
@@ -26,12 +24,15 @@ const AdminCards = () => {
     console.log("handle delete: ", id);
   };
 
+  const handleCreateCard = () => {
+    navigate(`/admin/cards/save/`);
+  };
+
   useEffect(() => {
     const loadCards = async (id) => {
       try {
         const cardsData = (await getAdminCards(id)).data;
         setCards(cardsData);
-        console.log("cardsData: ", cardsData);
       } catch (error) {
         console.error("Error loading cards:", error);
       } finally {
@@ -42,7 +43,13 @@ const AdminCards = () => {
     loadCards(id);
   }, [id]);
 
-  const renderCards = () => {
+  const renderCards = (
+    page,
+    itemsPerPage,
+    handleView = () => {},
+    handleEdit,
+    handleDelete
+  ) => {
     const indexOfLastItem = page * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentCards = cards.slice(indexOfFirstItem, indexOfLastItem);
@@ -81,9 +88,15 @@ const AdminCards = () => {
     ));
   };
 
-  const handlePaginationClick = (newPage) => {
-    setPage(newPage);
-  };
+  const cardsHeaders = [
+    "#",
+    "Tema",
+    "Tipo",
+    "Pregunta",
+    "Respuesta",
+    "Ayuda",
+    "Acciones",
+  ];
 
   return (
     <Container>
@@ -91,26 +104,17 @@ const AdminCards = () => {
         <Loading />
       ) : (
         <>
-          <Table responsive striped bordered hover>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Tema</th>
-                <th>Tipo</th>
-                <th>Pregunta</th>
-                <th>Respuesta</th>
-                <th>Ayuda</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>{renderCards()}</tbody>
-          </Table>
-          <Paginator
-            page={page}
-            maxPagesToShow={maxPagesToShow}
+          <DataTableTitle
+            title="Tarjetas"
+            action="Crear Tarjeta"
+            onClick={handleCreateCard}
+          />
+          <DataTable
+            headers={cardsHeaders}
+            renderData={renderCards}
             itemsCount={cards.length}
-            itemsPerPage={itemsPerPage}
-            handlePaginationClick={handlePaginationClick}
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}
           />
         </>
       )}

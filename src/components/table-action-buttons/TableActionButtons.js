@@ -11,7 +11,7 @@ const TableActionButtons = ({
   handleDelete,
 }) => {
   return (
-    <Row className="justify-content-center text-center">
+    <Row className="justify-content-center text-center no-margin">
       {showView && (
         <Col>
           <FontAwesomeIcon

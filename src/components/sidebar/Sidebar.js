@@ -1,0 +1,68 @@
+import { faHouseMedical, faUsers } from "@fortawesome/free-solid-svg-icons";
+import whiteLogo from "../../assets/logo/logo_white.png";
+import SidebarItem from "../sidebar-item/SidebarItem";
+import "./Sidebar.css";
+import { useLocation } from "react-router-dom";
+
+const Sidebar = ({ element }) => {
+  const location = useLocation();
+
+  const isActive = (path) => {
+    return location.pathname.includes(path);
+  };
+
+  return (
+    <div className="container-fluid">
+      <div className="row flex-nowrap">
+        <div className="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+          <div className="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark vh-100">
+            <a
+              href="/"
+              className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+            >
+              <img alt="Memo Logo" src={whiteLogo} width={45} height={45} />
+              <span className="fs-4 sidebar-label">MEMO</span>
+            </a>
+            <hr />
+            <ul className="nav nav-pills flex-column mb-auto">
+              <SidebarItem
+                name="Especialidades"
+                icon={faHouseMedical}
+                url="/admin/specialties"
+                active={!isActive("/admin/users")}
+              />
+              <SidebarItem
+                name="Usuarios"
+                icon={faUsers}
+                url="/admin/users"
+                active={isActive("/admin/users")}
+              />
+            </ul>
+            <hr />
+            <div className="dropdown">
+              <a
+                href="#"
+                className="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                id="dropdownUser1"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img
+                  src="https://github.com/mdo.png"
+                  alt=""
+                  width="32"
+                  height="32"
+                  className="rounded-circle me-2"
+                />
+                <strong>mdo</strong>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="col py-3">{element}</div>
+      </div>
+    </div>
+  );
+};
+
+export default Sidebar;

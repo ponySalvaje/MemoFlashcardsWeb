@@ -23,14 +23,22 @@ const AdminTopicsSave = () => {
       }
     };
 
-    loadTopic(id);
+    if (id) {
+      loadTopic(id);
+    } else {
+      setLoading(false);
+    }
   }, [id]);
 
   return loading ? (
     <Loading />
   ) : (
     <Container>
-      <AdminTopicForm id={id} lessonId={topic.lessonId} name={topic.title} />
+      <AdminTopicForm
+        id={id}
+        lessonId={topic ? topic.lessonId : ""}
+        name={topic ? topic.title : ""}
+      />
     </Container>
   );
 };

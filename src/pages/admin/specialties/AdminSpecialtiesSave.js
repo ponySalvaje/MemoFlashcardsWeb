@@ -23,14 +23,18 @@ const AdminSpecialtiesSave = () => {
       }
     };
 
-    loadSpecialty(id);
+    if (id) {
+      loadSpecialty(id);
+    } else {
+      setLoading(false);
+    }
   }, [id]);
 
   return loading ? (
     <Loading />
   ) : (
     <Container>
-      <AdminSpecialtyForm id={id} name={specialty.title} />
+      <AdminSpecialtyForm id={id} name={specialty ? specialty.title : ""} />
     </Container>
   );
 };

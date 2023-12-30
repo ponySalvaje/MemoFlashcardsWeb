@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Button, Col, Form, Row, Spinner } from "react-bootstrap";
-import { updateAdminSpecialty } from "../../../api/admin.specialty.api";
+import {
+  createAdminSpecialty,
+  updateAdminSpecialty,
+} from "../../../api/admin.specialty.api";
 
 const AdminSpecialtyForm = ({ id, name }) => {
   const [specialtyName, setSpecialtyName] = useState(name);
@@ -9,7 +12,9 @@ const AdminSpecialtyForm = ({ id, name }) => {
   const handleSaveSpecialty = async () => {
     setLoading(true);
     try {
-      await updateAdminSpecialty(id, { title: specialtyName });
+      id
+        ? await updateAdminSpecialty(id, { title: specialtyName })
+        : await createAdminSpecialty({ title: specialtyName });
     } catch (error) {
       console.error("Error updating information:", error);
     } finally {
@@ -43,7 +48,7 @@ const AdminSpecialtyForm = ({ id, name }) => {
           {loading ? (
             <Spinner animation="border" variant="white" size="sm" />
           ) : (
-            <span>Modificar</span>
+            <span>{id ? "Modificar" : "Crear"}</span>
           )}
         </Button>
       </div>

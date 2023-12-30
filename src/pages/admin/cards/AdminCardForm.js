@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button, Col, Form, Row, Spinner } from "react-bootstrap";
-import { updateAdminCard } from "../../../api/admin.card.api";
+import { saveAdminCard, updateAdminCard } from "../../../api/admin.card.api";
 import RichTextEditor from "../../../components/rich-text-editor/RichTextEditor";
 
 const AdminCardForm = ({
@@ -22,14 +22,23 @@ const AdminCardForm = ({
   const handleSaveCard = async () => {
     setLoading(true);
     try {
-      await updateAdminCard(id, {
-        subjectId: subjectId,
-        title: cardName,
-        question: cardQuestion,
-        answer: cardAnswer,
-        help: cardHelp,
-        isFree: !cardPremium,
-      });
+      id
+        ? await updateAdminCard(id, {
+            subjectId: subjectId,
+            title: cardName,
+            question: cardQuestion,
+            answer: cardAnswer,
+            help: cardHelp,
+            isFree: !cardPremium,
+          })
+        : await saveAdminCard({
+            subjectId: subjectId,
+            title: cardName,
+            question: cardQuestion,
+            answer: cardAnswer,
+            help: cardHelp,
+            isFree: !cardPremium,
+          });
     } catch (error) {
       console.error("Error updating information:", error);
     } finally {
@@ -94,7 +103,7 @@ const AdminCardForm = ({
           {loading ? (
             <Spinner animation="border" variant="white" size="sm" />
           ) : (
-            <span>Modificar</span>
+            <span>{id ? "Modificar" : "Crear"}</span>
           )}
         </Button>
       </div>

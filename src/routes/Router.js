@@ -23,6 +23,8 @@ import AdminSpecialtiesSave from "../pages/admin/specialties/AdminSpecialtiesSav
 import { createBrowserRouter } from "react-router-dom";
 import AdminTopicsSave from "../pages/admin/topics/AdminTopicsSave";
 import AdminCardsSave from "../pages/admin/cards/AdminCardsSave";
+import AdminPageContainer from "./AdminPageContainer";
+import AdminUsers from "../pages/admin/users/AdminUsers";
 
 const router = createBrowserRouter([
   {
@@ -115,27 +117,31 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin/specialties",
-    element: <AdminSpecialties />,
+    element: <AdminPageContainer element={<AdminSpecialties />} />,
   },
   {
-    path: "/admin/specialties/save/:id",
-    element: <AdminSpecialtiesSave />,
+    path: "/admin/specialties/save/:id?",
+    element: <AdminPageContainer element={<AdminSpecialtiesSave />} />,
   },
   {
     path: "/admin/topics/:id",
-    element: <AdminTopics />,
+    element: <AdminPageContainer element={<AdminTopics />} />,
   },
   {
-    path: "/admin/topics/save/:id",
-    element: <AdminTopicsSave />,
+    path: "/admin/topics/save/:id?",
+    element: <AdminPageContainer element={<AdminTopicsSave />} />,
   },
   {
     path: "/admin/cards/:id",
-    element: <AdminCards />,
+    element: <AdminPageContainer element={<AdminCards />} />,
   },
   {
-    path: "/admin/cards/save/:id",
-    element: <AdminCardsSave />,
+    path: "/admin/cards/save/:id?",
+    element: <AdminPageContainer element={<AdminCardsSave />} />,
+  },
+  {
+    path: "admin/users",
+    element: <AdminPageContainer element={<AdminUsers />} />,
   },
 ]);
 

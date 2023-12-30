@@ -1,15 +1,20 @@
 import { useState } from "react";
 import { Button, Col, Form, Row, Spinner } from "react-bootstrap";
-import { updateAdminTopic } from "../../../api/admin.topic.api";
+import {
+  createAdminTopic,
+  updateAdminTopic,
+} from "../../../api/admin.topic.api";
 
-const AdminTopicForm = ({ id, name }) => {
+const AdminTopicForm = ({ id, lessonId, name }) => {
   const [topicName, setTopicName] = useState(name);
   const [loading, setLoading] = useState(false);
 
   const handleSaveTopic = async () => {
     setLoading(true);
     try {
-      await updateAdminTopic(id, { title: topicName });
+      id
+        ? await updateAdminTopic(id, { title: topicName })
+        : await createAdminTopic({ lessonId: lessonId, title: topicName });
     } catch (error) {
       console.error("Error updating information:", error);
     } finally {
@@ -43,7 +48,7 @@ const AdminTopicForm = ({ id, name }) => {
           {loading ? (
             <Spinner animation="border" variant="white" size="sm" />
           ) : (
-            <span>Modificar</span>
+            <span>{id ? "Modificar" : "Crear"}</span>
           )}
         </Button>
       </div>

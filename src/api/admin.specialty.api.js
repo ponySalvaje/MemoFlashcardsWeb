@@ -13,6 +13,11 @@ export function getAdminSpecialty(id) {
   return APIMiddleware.get(url);
 }
 
+export function createAdminSpecialty(specialty) {
+  const url = `${ADMIN_SPECIALTIES_URL}`;
+  return APIMiddleware.post(url, { data: { title: specialty.title } });
+}
+
 export function updateAdminSpecialty(id, specialty) {
   const url = `${ADMIN_SPECIALTIES_URL}/${id}`;
   return APIMiddleware.put(url, { data: { title: specialty.title } });

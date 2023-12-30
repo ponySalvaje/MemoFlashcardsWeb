@@ -13,6 +13,20 @@ export function getAdminCard(id) {
   return APIMiddleware.get(url);
 }
 
+export function saveAdminCard(card) {
+  const url = `${ADMIN_CARDS_URL}`;
+  return APIMiddleware.post(url, {
+    data: {
+      subjectId: card.subjectId,
+      title: card.title,
+      question: card.question,
+      answer: card.answer,
+      help: card.answer,
+      isFree: card.isFree,
+    },
+  });
+}
+
 export function updateAdminCard(id, card) {
   const url = `${ADMIN_CARDS_URL}/${id}`;
   return APIMiddleware.put(url, {
