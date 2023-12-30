@@ -52,6 +52,19 @@ export const APIMiddleware = {
       throw error;
     }
   },
+
+  async delete(url, config = { ...defaultConfig }) {
+    const { params, responseType, noAuthToken } = config;
+    const headers = noAuthToken
+      ? { "Content-Type": "application/json" }
+      : await getHeaders();
+    try {
+      return axios.delete(url, { params, headers, responseType });
+    } catch (error) {
+      console.error("Error in DELETE request:", error);
+      throw error;
+    }
+  },
 };
 
 async function getHeaders() {

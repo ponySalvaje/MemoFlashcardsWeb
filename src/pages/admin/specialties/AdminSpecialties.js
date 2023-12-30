@@ -1,36 +1,55 @@
 import { useState, useEffect } from "react";
-import { getAdminSpecialties } from "../../../api/admin.specialty.api";
-import { Container } from "react-bootstrap";
+import {
+  getAdminSpecialties,
+  removeAdminSpecialty,
+} from "../../../api/admin.specialty.api";
+import { Alert, Container } from "react-bootstrap";
 import Loading from "../../../components/loading/Loading";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import TableActionButtons from "../../../components/table-action-buttons/TableActionButtons";
 import DataTable from "../../../components/data-table/DataTable";
 import DataTableTitle from "../../../components/data-table-title/DataTableTitle";
+import RemoveElementModal from "../../../components/remove-element-modal/RemoveElementModal";
 
 const AdminSpecialties = () => {
   const [specialties, setSpecialties] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const [showRemove, setShowRemove] = useState(false);
+
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleView = (id) => {
-    navigate(`/admin/topics/${id}`);
-  };
+  const [state, setState] = useState(location.state);
+  const [item, setItem] = useState(0);
 
-  const handleEdit = (id) => {
-    navigate(`/admin/specialties/save/${id}`);
-  };
+  useEffect(() => {
+    navigate(".", { replace: true });
+  }, [navigate]);
 
-  const handleDelete = (id) => {
-    console.log("handle delete: ", id);
-  };
-
-  const handleCreateSpecialty = () => {
-    navigate(`/admin/specialties/save/`);
+  const deleteSpecialty = async () => {
+    setShowRemove(false);
+    if (item) {
+      try {
+        await removeAdminSpecialty(item);
+        loadSpecialties();
+        setState({
+          result: true,
+          message: "¡Especialidad eliminada exitosamente!",
+        });
+      } catch (error) {
+        setState({
+          result: false,
+          message:
+            "Hubo un error inesperado al eliminar la especialidad. Por favor, inténtelo más tarde.",
+        });
+      }
+    }
   };
 
   const loadSpecialties = async () => {
     try {
+      setLoading(true);
       const specialtiesData = (await getAdminSpecialties()).data;
       setSpecialties(specialtiesData);
     } catch (error) {
@@ -43,8 +62,6 @@ const AdminSpecialties = () => {
   useEffect(() => {
     loadSpecialties();
   }, []);
-
-  const specialtiesHeaders = ["#", "Especialidad", "Temas", "Acciones"];
 
   const renderSpecialties = (
     page,
@@ -83,18 +100,39 @@ const AdminSpecialties = () => {
         <Loading />
       ) : (
         <>
+          {state && (
+            <Alert variant={state.result ? "primary" : "danger"} dismissible>
+              <b>
+                {state.result
+                  ? "Operación completada con éxito"
+                  : "¡Ups! Algo salió mal."}
+              </b>
+              <br />
+              <span>{state.message}</span>
+            </Alert>
+          )}
           <DataTableTitle
             title="Especialidades"
             action="Crear Especialidad"
-            onClick={handleCreateSpecialty}
+            onClick={() => navigate(`/admin/specialties/save/`)}
           />
           <DataTable
-            headers={specialtiesHeaders}
+            headers={["#", "Especialidad", "Temas", "Acciones"]}
             renderData={renderSpecialties}
             itemsCount={specialties.length}
-            handleView={handleView}
-            handleEdit={handleEdit}
-            handleDelete={handleDelete}
+            handleView={(id) => navigate(`/admin/topics/${id}`)}
+            handleEdit={(id) => navigate(`/admin/specialties/save/${id}`)}
+            handleDelete={(id) => {
+              setItem(id);
+              setShowRemove(true);
+            }}
+          />
+          <RemoveElementModal
+            showRemoveModal={showRemove}
+            handleCloseRemoveModal={() => setShowRemove(false)}
+            modalHeader="¿Está seguro que desea eliminar la especialidad?"
+            modalBody="Todos los temas y tarjetas que pertenezcan a esta especialidad también serán eliminados"
+            removeElement={deleteSpecialty}
           />
         </>
       )}

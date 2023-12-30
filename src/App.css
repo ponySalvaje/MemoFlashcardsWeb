@@ -52,6 +52,11 @@ a.nav-link {
   font-weight: 700 !important;
 }
 
+.btn-danger {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+}
+
 .section-title {
   padding-bottom: 30px;
 }

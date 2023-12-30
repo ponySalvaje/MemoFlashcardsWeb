@@ -4,10 +4,13 @@ import {
   createAdminSpecialty,
   updateAdminSpecialty,
 } from "../../../api/admin.specialty.api";
+import { useNavigate } from "react-router-dom";
 
 const AdminSpecialtyForm = ({ id, name }) => {
   const [specialtyName, setSpecialtyName] = useState(name);
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleSaveSpecialty = async () => {
     setLoading(true);
@@ -15,8 +18,23 @@ const AdminSpecialtyForm = ({ id, name }) => {
       id
         ? await updateAdminSpecialty(id, { title: specialtyName })
         : await createAdminSpecialty({ title: specialtyName });
+      navigate("/admin/specialties", {
+        state: {
+          result: true,
+          message: `¡Especialidad ${
+            id ? "modificada" : "creada"
+          } exitosamente!`,
+        },
+      });
     } catch (error) {
       console.error("Error updating information:", error);
+      navigate("admin/specialties", {
+        state: {
+          result: false,
+          message:
+            "Hubo un error inesperado al guardar la especialidad. Por favor, inténtelo más tarde.",
+        },
+      });
     } finally {
       setLoading(false);
     }
@@ -38,6 +56,7 @@ const AdminSpecialtyForm = ({ id, name }) => {
               name="specialty-name"
               maxLength="100"
               value={specialtyName}
+              required={true}
               onChange={(e) => setSpecialtyName(e.target.value)}
             />
           </Form.Group>

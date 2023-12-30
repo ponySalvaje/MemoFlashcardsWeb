@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { getAdminCard } from "../../../api/admin.card.api";
 import AdminCardForm from "./AdminCardForm";
 import Loading from "../../../components/loading/Loading";
@@ -10,6 +10,9 @@ const AdminCardsSave = () => {
   const [loading, setLoading] = useState(true);
 
   const { id } = useParams();
+
+  const location = useLocation();
+  const subjectId = location.state && location.state.subjectId;
 
   useEffect(() => {
     const loadCard = async (id) => {
@@ -36,7 +39,7 @@ const AdminCardsSave = () => {
     <Container>
       <AdminCardForm
         id={id}
-        subjectId={card ? card.subjectId : ""}
+        subjectId={card ? card.subjectId : subjectId}
         name={card ? card.title : ""}
         premium={card ? !card.isFree : ""}
         question={card ? card.question : ""}

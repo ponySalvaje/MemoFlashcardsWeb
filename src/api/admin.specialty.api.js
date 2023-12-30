@@ -22,3 +22,8 @@ export function updateAdminSpecialty(id, specialty) {
   const url = `${ADMIN_SPECIALTIES_URL}/${id}`;
   return APIMiddleware.put(url, { data: { title: specialty.title } });
 }
+
+export function removeAdminSpecialty(id) {
+  const url = `${ADMIN_SPECIALTIES_URL}/${id}`;
+  return APIMiddleware.delete(url);
+}

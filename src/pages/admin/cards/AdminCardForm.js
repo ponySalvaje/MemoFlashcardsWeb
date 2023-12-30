@@ -1,7 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Button, Col, Form, Row, Spinner } from "react-bootstrap";
 import { saveAdminCard, updateAdminCard } from "../../../api/admin.card.api";
 import RichTextEditor from "../../../components/rich-text-editor/RichTextEditor";
+import { useNavigate } from "react-router-dom";
 
 const AdminCardForm = ({
   id,
@@ -18,6 +19,8 @@ const AdminCardForm = ({
   const [cardAnswer, setCardAnswer] = useState(answer);
   const [cardHelp, setCardHelp] = useState(help);
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleSaveCard = async () => {
     setLoading(true);
@@ -39,8 +42,21 @@ const AdminCardForm = ({
             help: cardHelp,
             isFree: !cardPremium,
           });
+      navigate(`/admin/cards/${subjectId}`, {
+        state: {
+          result: true,
+          message: `Tarjeta ${id ? "modificada" : "creada"} exitosamente!`,
+        },
+      });
     } catch (error) {
       console.error("Error updating information:", error);
+      navigate(`/admin/cards/${subjectId}`, {
+        state: {
+          result: false,
+          message:
+            "Hubo un error inesperado al guardar la tarjeta. Por favor, inténtelo más tarde.",
+        },
+      });
     } finally {
       setLoading(false);
     }
@@ -52,7 +68,7 @@ const AdminCardForm = ({
   };
 
   return (
-    <Form id="form-save-Card" onSubmit={handleSubmit}>
+    <Form id="form-save-card" onSubmit={handleSubmit}>
       <Row>
         <Col xs={6} sm={6} md={6} lg={6}>
           <Form.Group className="form-group">
@@ -62,6 +78,7 @@ const AdminCardForm = ({
               name="card-name"
               maxLength="100"
               value={cardName}
+              required={true}
               onChange={(e) => setCardName(e.target.value)}
             />
           </Form.Group>

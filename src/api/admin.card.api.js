@@ -40,3 +40,8 @@ export function updateAdminCard(id, card) {
     },
   });
 }
+
+export function removeAdminCard(id) {
+  const url = `${ADMIN_CARDS_URL}/${id}`;
+  return APIMiddleware.delete(url);
+}

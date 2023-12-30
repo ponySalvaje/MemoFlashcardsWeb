@@ -26,3 +26,8 @@ export function updateAdminTopic(id, topic) {
     data: { lessonId: topic.lessonId, title: topic.title },
   });
 }
+
+export function removeAdminTopic(id) {
+  const url = `${ADMIN_TOPICS_URL}/${id}`;
+  return APIMiddleware.delete(url);
+}

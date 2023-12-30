@@ -1,0 +1,10 @@
+.remove-element-header {
+  color: #fff !important;
+  background-color: #392eb8 !important;
+  font-weight: bold;
+  text-align: center;
+}
+
+.remove-element-body {
+  min-height: 100px;
+}

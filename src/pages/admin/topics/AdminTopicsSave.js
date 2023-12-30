@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { getAdminTopic } from "../../../api/admin.topic.api";
 import AdminTopicForm from "./AdminTopicForm";
 import Loading from "../../../components/loading/Loading";
@@ -11,10 +11,14 @@ const AdminTopicsSave = () => {
 
   const { id } = useParams();
 
+  const location = useLocation();
+  const lessonId = location.state && location.state.lessonId;
+
   useEffect(() => {
     const loadTopic = async (id) => {
       try {
         const topicData = (await getAdminTopic(id)).data;
+        console.log("topicData: ", topicData);
         setTopic(topicData);
       } catch (error) {
         console.error("Error loading topics:", error);
@@ -36,7 +40,7 @@ const AdminTopicsSave = () => {
     <Container>
       <AdminTopicForm
         id={id}
-        lessonId={topic ? topic.lessonId : ""}
+        lessonId={topic ? topic.lessonId : lessonId}
         name={topic ? topic.title : ""}
       />
     </Container>

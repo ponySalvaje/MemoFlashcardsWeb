@@ -1,47 +1,66 @@
 import { useState, useEffect } from "react";
-import { getAdminCards } from "../../../api/admin.card.api";
-import { Container } from "react-bootstrap";
+import { getAdminCards, removeAdminCard } from "../../../api/admin.card.api";
+import { Alert, Container } from "react-bootstrap";
 import Loading from "../../../components/loading/Loading";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import "./AdminCards.css";
 import TableActionButtons from "../../../components/table-action-buttons/TableActionButtons";
 import DataTable from "../../../components/data-table/DataTable";
 import DataTableTitle from "../../../components/data-table-title/DataTableTitle";
+import RemoveElementModal from "../../../components/remove-element-modal/RemoveElementModal";
 
 const AdminCards = () => {
   const [cards, setCards] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const [showRemove, setShowRemove] = useState(false);
+
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const [state, setState] = useState(location.state);
+  const [item, setItem] = useState(0);
 
   const { id } = useParams();
 
-  const handleEdit = (id) => {
-    navigate(`/admin/cards/save/${id}`);
-  };
+  useEffect(() => {
+    navigate(".", { replace: true });
+  }, [navigate]);
 
-  const handleDelete = (id) => {
-    console.log("handle delete: ", id);
-  };
-
-  const handleCreateCard = () => {
-    navigate(`/admin/cards/save/`);
+  const loadCards = async (id) => {
+    try {
+      const cardsData = (await getAdminCards(id)).data;
+      setCards(cardsData);
+    } catch (error) {
+      console.error("Error loading cards:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
-    const loadCards = async (id) => {
-      try {
-        const cardsData = (await getAdminCards(id)).data;
-        setCards(cardsData);
-      } catch (error) {
-        console.error("Error loading cards:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     loadCards(id);
   }, [id]);
+
+  const deleteCard = async () => {
+    setShowRemove(false);
+    if (item) {
+      try {
+        await removeAdminCard(item);
+        loadCards(id);
+        setState({
+          result: true,
+          message: "Tarjeta eliminada exitosamente!",
+        });
+      } catch (error) {
+        setState({
+          result: false,
+          message:
+            "Hubo un error inesperado al eliminar la tarjeta. Por favor, inténtelo más tarde.",
+        });
+      }
+    }
+  };
 
   const renderCards = (
     page,
@@ -88,33 +107,54 @@ const AdminCards = () => {
     ));
   };
 
-  const cardsHeaders = [
-    "#",
-    "Tema",
-    "Tipo",
-    "Pregunta",
-    "Respuesta",
-    "Ayuda",
-    "Acciones",
-  ];
-
   return (
     <Container>
       {loading ? (
         <Loading />
       ) : (
         <>
+          {state && (
+            <Alert variant={state.result ? "primary" : "danger"} dismissible>
+              <b>
+                {state.result
+                  ? "Operación completada con éxito"
+                  : "¡Ups! Algo salió mal."}
+              </b>
+              <br />
+              <span>{state.message}</span>
+            </Alert>
+          )}
           <DataTableTitle
             title="Tarjetas"
             action="Crear Tarjeta"
-            onClick={handleCreateCard}
+            onClick={() =>
+              navigate(`/admin/cards/save/`, { state: { subjectId: id } })
+            }
           />
           <DataTable
-            headers={cardsHeaders}
+            headers={[
+              "#",
+              "Tema",
+              "Tipo",
+              "Pregunta",
+              "Respuesta",
+              "Ayuda",
+              "Acciones",
+            ]}
             renderData={renderCards}
             itemsCount={cards.length}
-            handleEdit={handleEdit}
-            handleDelete={handleDelete}
+            handleEdit={(id) => navigate(`/admin/cards/save/${id}`)}
+            handleDelete={(id) => {
+              setItem(id);
+              setShowRemove(true);
+            }}
+          />
+          <RemoveElementModal
+            showRemoveModal={showRemove}
+            handleCloseRemoveModal={() => setShowRemove(false)}
+            modalHeader="¿Está seguro que desea eliminar la tarjeta?"
+            modalBody="Se eliminará la tarjeta seleccionada y no se podrá recuperar la información"
+            removeElement={deleteCard}
           />
         </>
       )}
