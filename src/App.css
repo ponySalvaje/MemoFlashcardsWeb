@@ -147,3 +147,16 @@ a.nav-link {
 .nav-pills .show > .nav-link {
   background-color: #392eb8 !important;
 }
+
+.element-sticky {
+  color: #fff;
+  background-color: #392eb8;
+  text-align: center;
+}
+
+#premium-card-switch {
+  height: 37.6px;
+  min-width: 80px;
+  margin-top: 0px !important;
+  cursor: pointer;
+}

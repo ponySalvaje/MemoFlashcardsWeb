@@ -1,18 +1,14 @@
 import { useState, useEffect } from "react";
 import { getAdminTopics, removeAdminTopic } from "../../../api/admin.topic.api";
-import { Alert, Container } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import Loading from "../../../components/loading/Loading";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import TableActionButtons from "../../../components/table-action-buttons/TableActionButtons";
-import DataTable from "../../../components/data-table/DataTable";
-import DataTableTitle from "../../../components/data-table-title/DataTableTitle";
-import RemoveElementModal from "../../../components/remove-element-modal/RemoveElementModal";
+import EntityTable from "../../../components/entity-table/EntityTable";
 
 const AdminTopics = () => {
   const [topics, setTopics] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  const [showRemove, setShowRemove] = useState(false);
 
   const { id } = useParams();
 
@@ -27,7 +23,6 @@ const AdminTopics = () => {
   }, [navigate]);
 
   const deleteTopic = async () => {
-    setShowRemove(false);
     if (item) {
       try {
         await removeAdminTopic(item);
@@ -95,44 +90,25 @@ const AdminTopics = () => {
       {loading ? (
         <Loading />
       ) : (
-        <>
-          {state && (
-            <Alert variant={state.result ? "primary" : "danger"} dismissible>
-              <b>
-                {state.result
-                  ? "Operación completada con éxito"
-                  : "¡Ups! Algo salió mal."}
-              </b>
-              <br />
-              <span>{state.message}</span>
-            </Alert>
-          )}
-          <DataTableTitle
-            title="Temas"
-            action="Crear Tema"
-            onClick={() =>
-              navigate(`/admin/topics/save/`, { state: { lessonId: id } })
-            }
-          />
-          <DataTable
-            headers={["#", "Tema", "Tarjetas", "Acciones"]}
-            renderData={renderTopics}
-            itemsCount={topics.length}
-            handleView={(id) => navigate(`/admin/cards/${id}`)}
-            handleEdit={(id) => navigate(`/admin/topics/save/${id}`)}
-            handleDelete={(id) => {
-              setItem(id);
-              setShowRemove(true);
-            }}
-          />
-          <RemoveElementModal
-            showRemoveModal={showRemove}
-            handleCloseRemoveModal={() => setShowRemove(false)}
-            modalHeader="¿Está seguro que desea eliminar el tema?"
-            modalBody="Todas las tarjetas que pertenezcan a este tema también serán eliminadas"
-            removeElement={deleteTopic}
-          />
-        </>
+        <EntityTable
+          state={state}
+          title="Temas"
+          action="Crear Tema"
+          createButton={() =>
+            navigate(`/admin/topics/save/`, {
+              state: { lessonId: id },
+            })
+          }
+          headers={["#", "Tema", "Tarjetas", "Acciones"]}
+          renderData={renderTopics}
+          itemsCount={topics.length}
+          viewButton={(id) => navigate(`/admin/cards/${id}`)}
+          editButton={(id) => navigate(`/admin/topics/save/${id}`)}
+          deleteButton={deleteTopic}
+          deleteHeader="¿Está seguro que desea eliminar el tema?"
+          deleteMessage="Todas las tarjetas que pertenezcan a este tema también serán eliminadas"
+          setItem={setItem}
+        />
       )}
     </Container>
   );

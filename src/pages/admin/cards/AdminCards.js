@@ -1,19 +1,14 @@
 import { useState, useEffect } from "react";
 import { getAdminCards, removeAdminCard } from "../../../api/admin.card.api";
-import { Alert, Container } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import Loading from "../../../components/loading/Loading";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import "./AdminCards.css";
 import TableActionButtons from "../../../components/table-action-buttons/TableActionButtons";
-import DataTable from "../../../components/data-table/DataTable";
-import DataTableTitle from "../../../components/data-table-title/DataTableTitle";
-import RemoveElementModal from "../../../components/remove-element-modal/RemoveElementModal";
+import EntityTable from "../../../components/entity-table/EntityTable";
 
 const AdminCards = () => {
   const [cards, setCards] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  const [showRemove, setShowRemove] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -43,7 +38,6 @@ const AdminCards = () => {
   }, [id]);
 
   const deleteCard = async () => {
-    setShowRemove(false);
     if (item) {
       try {
         await removeAdminCard(item);
@@ -78,7 +72,7 @@ const AdminCards = () => {
         <td>{card.id}</td>
         <td>{card.title}</td>
         <td>
-          <p className="card-type-sticky badge">
+          <p className="element-sticky badge">
             {card.isFree ? "Gratuito" : "Premium"}
           </p>
         </td>
@@ -113,25 +107,15 @@ const AdminCards = () => {
         <Loading />
       ) : (
         <>
-          {state && (
-            <Alert variant={state.result ? "primary" : "danger"} dismissible>
-              <b>
-                {state.result
-                  ? "Operación completada con éxito"
-                  : "¡Ups! Algo salió mal."}
-              </b>
-              <br />
-              <span>{state.message}</span>
-            </Alert>
-          )}
-          <DataTableTitle
+          <EntityTable
+            state={state}
             title="Tarjetas"
             action="Crear Tarjeta"
-            onClick={() =>
-              navigate(`/admin/cards/save/`, { state: { subjectId: id } })
+            createButton={() =>
+              navigate(`/admin/cards/save/`, {
+                state: { subjectId: id },
+              })
             }
-          />
-          <DataTable
             headers={[
               "#",
               "Tema",
@@ -143,18 +127,12 @@ const AdminCards = () => {
             ]}
             renderData={renderCards}
             itemsCount={cards.length}
-            handleEdit={(id) => navigate(`/admin/cards/save/${id}`)}
-            handleDelete={(id) => {
-              setItem(id);
-              setShowRemove(true);
-            }}
-          />
-          <RemoveElementModal
-            showRemoveModal={showRemove}
-            handleCloseRemoveModal={() => setShowRemove(false)}
-            modalHeader="¿Está seguro que desea eliminar la tarjeta?"
-            modalBody="Se eliminará la tarjeta seleccionada y no se podrá recuperar la información"
-            removeElement={deleteCard}
+            viewButton={(id) => navigate(`/admin/cards/${id}`)}
+            editButton={(id) => navigate(`/admin/cards/save/${id}`)}
+            deleteButton={deleteCard}
+            deleteHeader="¿Está seguro que desea eliminar la tarjeta?"
+            deleteMessage="Se eliminará la tarjeta seleccionada y no se podrá recuperar la información"
+            setItem={setItem}
           />
         </>
       )}

@@ -11,4 +11,5 @@ export const apiUrls = {
   ADMIN_SPECIALTIES_URL: `${BASE_URL}/admin/lessons`,
   ADMIN_TOPICS_URL: `${BASE_URL}/admin/subjects`,
   ADMIN_CARDS_URL: `${BASE_URL}/admin/cards`,
+  ADMIN_USERS_URL: `${BASE_URL}/admin/users`,
 };
