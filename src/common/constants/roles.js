@@ -1,5 +1,5 @@
-export const roles = {
-  free: "Free",
-  premium: "Premium",
-  admin: "Admin",
-};
+export const roles = [
+  { label: "Gratuito", value: "free student" },
+  { label: "Premium", value: "pro student" },
+  { label: "Administrador", value: "admin" },
+];

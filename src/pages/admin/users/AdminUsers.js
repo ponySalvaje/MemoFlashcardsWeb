@@ -5,6 +5,7 @@ import { getAdminUsers, removeAdminUser } from "../../../api/admin.user.api";
 import { Container } from "react-bootstrap";
 import Loading from "../../../components/loading/Loading";
 import EntityTable from "../../../components/entity-table/EntityTable";
+import { userTypes } from "../../../common/constants/userTypes";
 
 const AdminUsers = () => {
   const [users, setUsers] = useState([]);
@@ -27,7 +28,7 @@ const AdminUsers = () => {
         loadUsers();
         setState({
           result: true,
-          message: "Usuario eliminada exitosamente!",
+          message: "Usuario eliminado exitosamente!",
         });
       } catch (error) {
         setState({
@@ -60,18 +61,37 @@ const AdminUsers = () => {
     itemsPerPage,
     handleView = () => {},
     handleEdit,
-    handleDelete
+    handleDelete,
+    filter
   ) => {
+    let filteredUsers = users;
+
+    if (filter && filter.trim() !== "") {
+      filteredUsers = users.filter((user) =>
+        user.email.toLowerCase().includes(filter.toLowerCase())
+      );
+    }
+
     const indexOfLastItem = page * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentUsers = users.slice(indexOfFirstItem, indexOfLastItem);
+    const currentUsers = filteredUsers.slice(indexOfFirstItem, indexOfLastItem);
 
     return currentUsers.map((user) => (
       <tr key={user.id}>
         <td>{user.id}</td>
-        <td>{user.name}</td>
+        <td>{user.name.substring(0, 100)}</td>
         <td>{user.email}</td>
-        <td>{user.type}</td>
+        <td className="text-center">
+          <p className="element-sticky badge no-margin display-block">
+            {user.type === userTypes.free
+              ? "Gratuito"
+              : user.type === userTypes.pro
+              ? "Premium"
+              : user.type === userTypes.admin
+              ? "Administrador"
+              : "Desconocido"}
+          </p>
+        </td>
         <td>
           <TableActionButtons
             itemId={user.id}
@@ -97,11 +117,12 @@ const AdminUsers = () => {
           headers={["#", "Nombre", "Correo", "Tipo", "Acciones"]}
           renderData={renderUsers}
           itemsCount={users.length}
+          itemList={users}
           viewButton={(id) => navigate(`/admin/users/${id}`)}
           editButton={(id) => navigate(`/admin/users/save/${id}`)}
           deleteButton={deleteUser}
           deleteHeader="¿Está seguro que desea eliminar al usuario?"
-          deleteMessage="Todos el progreso del usuario será eliminado"
+          deleteMessage="Todo el progreso del usuario será eliminado"
           setItem={setItem}
         />
       )}

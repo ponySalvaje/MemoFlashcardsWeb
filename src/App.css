@@ -160,3 +160,42 @@ a.nav-link {
   margin-top: 0px !important;
   cursor: pointer;
 }
+
+.display-block {
+  display: block !important;
+}
+
+.search-bar-group {
+  align-items: center;
+  background-color: white;
+  position: relative;
+  display: flex;
+  border-radius: 0.25rem;
+  border: 2px solid #392eb8;
+}
+
+.search-icon {
+  width: 17px;
+  height: 17px;
+  margin-left: 20px;
+  color: #392eb8;
+}
+
+.search-input {
+  border: none !important;
+  font-size: 18px;
+}
+
+.search-input::placeholder {
+  color: #0064b5;
+  opacity: 0.5;
+}
+
+.search-input:focus {
+  border-color: white !important;
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0) !important;
+}
+
+.h-60 {
+  height: 60px;
+}

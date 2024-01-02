@@ -3,11 +3,11 @@ import { Pagination } from "react-bootstrap";
 const Paginator = ({
   page,
   maxPagesToShow,
-  itemsCount,
+  count,
   itemsPerPage,
   handlePaginationClick,
 }) => {
-  const totalPages = Math.ceil(itemsCount / itemsPerPage);
+  const totalPages = Math.ceil(count / itemsPerPage);
 
   const calculatePageNumbers = () => {
     const pages = [];

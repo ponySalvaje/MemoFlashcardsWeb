@@ -12,6 +12,7 @@ const EntityTable = ({
   headers,
   renderData,
   itemsCount,
+  itemList,
   viewButton,
   editButton,
   deleteButton,
@@ -39,6 +40,7 @@ const EntityTable = ({
         headers={headers}
         renderData={renderData}
         itemsCount={itemsCount}
+        itemList={itemList}
         handleView={viewButton}
         handleEdit={editButton}
         handleDelete={(id) => {

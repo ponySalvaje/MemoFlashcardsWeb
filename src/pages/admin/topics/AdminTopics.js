@@ -62,11 +62,23 @@ const AdminTopics = () => {
     itemsPerPage,
     handleView,
     handleEdit,
-    handleDelete
+    handleDelete,
+    filter
   ) => {
+    let filteredTopics = topics;
+
+    if (filter && filter.trim() !== "") {
+      filteredTopics = topics.filter((topic) =>
+        topic.title.toLowerCase().includes(filter.toLowerCase())
+      );
+    }
+
     const indexOfLastItem = page * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentTopics = topics.slice(indexOfFirstItem, indexOfLastItem);
+    const currentTopics = filteredTopics.slice(
+      indexOfFirstItem,
+      indexOfLastItem
+    );
 
     return currentTopics.map((topic) => (
       <tr key={topic.id}>
@@ -102,6 +114,7 @@ const AdminTopics = () => {
           headers={["#", "Tema", "Tarjetas", "Acciones"]}
           renderData={renderTopics}
           itemsCount={topics.length}
+          itemList={topics}
           viewButton={(id) => navigate(`/admin/cards/${id}`)}
           editButton={(id) => navigate(`/admin/topics/save/${id}`)}
           deleteButton={deleteTopic}

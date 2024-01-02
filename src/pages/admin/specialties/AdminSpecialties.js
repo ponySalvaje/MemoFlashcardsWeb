@@ -63,11 +63,20 @@ const AdminSpecialties = () => {
     itemsPerPage,
     handleView,
     handleEdit,
-    handleDelete
+    handleDelete,
+    filter
   ) => {
+    let filteredSpecialties = specialties;
+
+    if (filter && filter.trim() !== "") {
+      filteredSpecialties = specialties.filter((specialty) =>
+        specialty.title.toLowerCase().includes(filter.toLowerCase())
+      );
+    }
+
     const indexOfLastItem = page * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentSpecialties = specialties.slice(
+    const currentSpecialties = filteredSpecialties.slice(
       indexOfFirstItem,
       indexOfLastItem
     );
@@ -102,6 +111,7 @@ const AdminSpecialties = () => {
           headers={["#", "Especialidad", "Temas", "Acciones"]}
           renderData={renderSpecialties}
           itemsCount={specialties.length}
+          itemList={specialties}
           viewButton={(id) => navigate(`/admin/topics/${id}`)}
           editButton={(id) => navigate(`/admin/specialties/save/${id}`)}
           deleteButton={deleteSpecialty}

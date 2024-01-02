@@ -12,7 +12,7 @@ import { useLocation, useParams } from "react-router-dom";
 import Loading from "../../components/loading/Loading";
 import { getProfileInformation } from "../../api/profile.api";
 import UpgradePlan from "../../components/upgrade-plan/UpgradePlan";
-import { roles } from "../../common/constants/roles";
+import { role } from "../../common/constants/role";
 
 function Questionnaire() {
   const [currentCard, setCurrentCard] = useState(0);
@@ -103,7 +103,7 @@ function Questionnaire() {
       ) : (
         <>
           {currentCard === cards.length && profileInfo ? (
-            profileInfo.currentPlan === roles.free ? (
+            profileInfo.currentPlan === role.free ? (
               <UpgradePlan />
             ) : (
               <QuestionnaireDone

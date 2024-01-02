@@ -28,7 +28,7 @@ const AdminSpecialtyForm = ({ id, name }) => {
       });
     } catch (error) {
       console.error("Error updating information:", error);
-      navigate("admin/specialties", {
+      navigate("/admin/specialties", {
         state: {
           result: false,
           message:

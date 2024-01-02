@@ -86,7 +86,7 @@ function FindCards() {
                         {filter === "" ? "" : `sobre "${filter}"`}
                       </h3>
                     </Form.Label>
-                    <div className="search-bar-group input-group mb-3 align-items-center">
+                    <div className="search-bar-group h-60 input-group mb-3 align-items-center">
                       <FontAwesomeIcon
                         className="search-icon"
                         icon={faSearch}

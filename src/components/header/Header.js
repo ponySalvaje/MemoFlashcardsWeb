@@ -8,6 +8,7 @@ import { useLogout } from "../../hooks/useLogout";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { NavDropdown } from "react-bootstrap";
 import { useEffect, useState } from "react";
+import { role } from "../../common/constants/role";
 
 function Header() {
   const { logout } = useLogout();
@@ -49,7 +50,7 @@ function Header() {
           ) : (
             <Nav className="navigationbar-options">
               <NavDropdown title={userData[1]} id="navbarScrollingDropdown">
-                {userData[2] === "Admin" && (
+                {userData[2] === role.admin && (
                   <>
                     <NavDropdown.Item href="/admin/specialties">
                       Administración

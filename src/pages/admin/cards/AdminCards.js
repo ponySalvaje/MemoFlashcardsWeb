@@ -61,11 +61,20 @@ const AdminCards = () => {
     itemsPerPage,
     handleView = () => {},
     handleEdit,
-    handleDelete
+    handleDelete,
+    filter
   ) => {
+    let filteredCards = cards;
+
+    if (filter && filter.trim() !== "") {
+      filteredCards = cards.filter((card) =>
+        card.title.toLowerCase().includes(filter.toLowerCase())
+      );
+    }
+
     const indexOfLastItem = page * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentCards = cards.slice(indexOfFirstItem, indexOfLastItem);
+    const currentCards = filteredCards.slice(indexOfFirstItem, indexOfLastItem);
 
     return currentCards.map((card) => (
       <tr key={card.id}>
@@ -127,6 +136,7 @@ const AdminCards = () => {
             ]}
             renderData={renderCards}
             itemsCount={cards.length}
+            itemList={cards}
             viewButton={(id) => navigate(`/admin/cards/${id}`)}
             editButton={(id) => navigate(`/admin/cards/save/${id}`)}
             deleteButton={deleteCard}

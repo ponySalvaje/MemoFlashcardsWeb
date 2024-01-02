@@ -25,6 +25,7 @@ import AdminTopicsSave from "../pages/admin/topics/AdminTopicsSave";
 import AdminCardsSave from "../pages/admin/cards/AdminCardsSave";
 import AdminPageContainer from "./AdminPageContainer";
 import AdminUsers from "../pages/admin/users/AdminUsers";
+import AdminUsersSave from "../pages/admin/users/AdminUserSave";
 
 const router = createBrowserRouter([
   {
@@ -142,6 +143,10 @@ const router = createBrowserRouter([
   {
     path: "admin/users",
     element: <AdminPageContainer element={<AdminUsers />} />,
+  },
+  {
+    path: "admin/users/save/:id?",
+    element: <AdminPageContainer element={<AdminUsersSave />} />,
   },
 ]);
 
