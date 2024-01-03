@@ -26,6 +26,7 @@ import AdminCardsSave from "../pages/admin/cards/AdminCardsSave";
 import AdminPageContainer from "./AdminPageContainer";
 import AdminUsers from "../pages/admin/users/AdminUsers";
 import AdminUsersSave from "../pages/admin/users/AdminUserSave";
+import AdminProtected from "./AdminProtected";
 
 const router = createBrowserRouter([
   {
@@ -118,35 +119,67 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin/specialties",
-    element: <AdminPageContainer element={<AdminSpecialties />} />,
+    element: (
+      <AdminProtected>
+        <AdminPageContainer element={<AdminSpecialties />} />
+      </AdminProtected>
+    ),
   },
   {
     path: "/admin/specialties/save/:id?",
-    element: <AdminPageContainer element={<AdminSpecialtiesSave />} />,
+    element: (
+      <AdminProtected>
+        <AdminPageContainer element={<AdminSpecialtiesSave />} />
+      </AdminProtected>
+    ),
   },
   {
     path: "/admin/topics/:id",
-    element: <AdminPageContainer element={<AdminTopics />} />,
+    element: (
+      <AdminProtected>
+        <AdminPageContainer element={<AdminTopics />} />
+      </AdminProtected>
+    ),
   },
   {
     path: "/admin/topics/save/:id?",
-    element: <AdminPageContainer element={<AdminTopicsSave />} />,
+    element: (
+      <AdminProtected>
+        <AdminPageContainer element={<AdminTopicsSave />} />
+      </AdminProtected>
+    ),
   },
   {
     path: "/admin/cards/:id",
-    element: <AdminPageContainer element={<AdminCards />} />,
+    element: (
+      <AdminProtected>
+        <AdminPageContainer element={<AdminCards />} />
+      </AdminProtected>
+    ),
   },
   {
     path: "/admin/cards/save/:id?",
-    element: <AdminPageContainer element={<AdminCardsSave />} />,
+    element: (
+      <AdminProtected>
+        <AdminPageContainer element={<AdminCardsSave />} />
+      </AdminProtected>
+    ),
   },
   {
     path: "admin/users",
-    element: <AdminPageContainer element={<AdminUsers />} />,
+    element: (
+      <AdminProtected>
+        <AdminPageContainer element={<AdminUsers />} />
+      </AdminProtected>
+    ),
   },
   {
     path: "admin/users/save/:id?",
-    element: <AdminPageContainer element={<AdminUsersSave />} />,
+    element: (
+      <AdminProtected>
+        <AdminPageContainer element={<AdminUsersSave />} />
+      </AdminProtected>
+    ),
   },
 ]);
 
