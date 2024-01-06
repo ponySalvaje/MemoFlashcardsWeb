@@ -27,6 +27,8 @@ import AdminPageContainer from "./AdminPageContainer";
 import AdminUsers from "../pages/admin/users/AdminUsers";
 import AdminUsersSave from "../pages/admin/users/AdminUserSave";
 import AdminProtected from "./AdminProtected";
+import ForgotPassword from "../pages/forgot-password/ForgotPassword";
+import ResetPassword from "../pages/reset-password/ResetPassword";
 
 const router = createBrowserRouter([
   {
@@ -104,6 +106,14 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <PageContainer element={<Register />} />,
+  },
+  {
+    path: "/forgot-password",
+    element: <PageContainer element={<ForgotPassword />} />,
+  },
+  {
+    path: "/reset-password/:token",
+    element: <PageContainer element={<ResetPassword />} />,
   },
   {
     path: "/how-it-works",

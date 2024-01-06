@@ -92,7 +92,7 @@ const AdminUserForm = ({
           <Form.Group className="form-group">
             <Form.Label>Correo electrónico</Form.Label>
             <Form.Control
-              type="text"
+              type="email"
               name="user-email"
               value={userEmail}
               required={true}
@@ -166,6 +166,7 @@ const AdminUserForm = ({
               <Form.Label>Fecha de vencimiento</Form.Label>
               <Form.Control
                 type="date"
+                required
                 name="user-due-date"
                 value={userDueDate}
                 onChange={(e) => setUserDueDate(e.target.value)}

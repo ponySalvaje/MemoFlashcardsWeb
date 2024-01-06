@@ -63,7 +63,7 @@ const ChangePassword = () => {
       console.error("Error updating information:", error);
       setResult({
         success: false,
-        message: ["La contraseña ingresa no coincide con los registros"],
+        message: ["La contraseña ingresada no coincide con los registros"],
       });
     } finally {
       setLoading(false);

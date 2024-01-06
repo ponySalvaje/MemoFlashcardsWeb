@@ -3,9 +3,21 @@ import whiteLogo from "../../assets/logo/logo_white.png";
 import SidebarItem from "../sidebar-item/SidebarItem";
 import "./Sidebar.css";
 import { useLocation } from "react-router-dom";
+import avatarImage from "../../assets/profile-avatar/avatar-1.png";
+import { Image } from "react-bootstrap";
+import { useAuthContext } from "../../hooks/useAuthContext";
+import { useEffect, useState } from "react";
 
 const Sidebar = ({ element }) => {
   const location = useLocation();
+
+  const { user } = useAuthContext();
+
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    setUserData(user);
+  }, [user]);
 
   const isActive = (path) => {
     return location.pathname.includes(path);
@@ -39,23 +51,17 @@ const Sidebar = ({ element }) => {
               />
             </ul>
             <hr />
-            <div className="dropdown">
-              <a
-                href="#"
-                className="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-                id="dropdownUser1"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <img
-                  src="https://github.com/mdo.png"
-                  alt=""
-                  width="32"
-                  height="32"
+            <div>
+              <div className="d-flex align-items-center text-white">
+                <Image
+                  src={avatarImage}
+                  width={32}
+                  height={32}
+                  alt="Avatar image"
                   className="rounded-circle me-2"
                 />
-                <strong>mdo</strong>
-              </a>
+                <strong>{userData && userData[1]}</strong>
+              </div>
             </div>
           </div>
         </div>

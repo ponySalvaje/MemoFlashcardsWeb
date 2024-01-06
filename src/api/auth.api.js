@@ -18,3 +18,19 @@ export function register(data) {
     noAuthToken: true,
   });
 }
+
+export function forgotPassword(email) {
+  const url = `${AUTH_URL}/forgot-password`;
+  return APIMiddleware.post(url, {
+    data: { email },
+    noAuthToken: true,
+  });
+}
+
+export function resetPassword(data) {
+  const url = `${AUTH_URL}/reset-password`;
+  return APIMiddleware.post(url, {
+    data: data,
+    noAuthToken: true,
+  });
+}
