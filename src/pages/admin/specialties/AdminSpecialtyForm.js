@@ -6,8 +6,10 @@ import {
 } from "../../../api/admin.specialty.api";
 import { useNavigate } from "react-router-dom";
 
-const AdminSpecialtyForm = ({ id, name }) => {
+const AdminSpecialtyForm = ({ id, name, iconPath }) => {
   const [specialtyName, setSpecialtyName] = useState(name);
+  const [imagePreview, setImagePreview] = useState(iconPath);
+  const [specialtyImage, setSpecialtyImage] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -15,9 +17,14 @@ const AdminSpecialtyForm = ({ id, name }) => {
   const handleSaveSpecialty = async () => {
     setLoading(true);
     try {
+      const formData = new FormData();
+      formData.append("title", specialtyName);
+      if (specialtyImage) {
+        formData.append("icon", specialtyImage);
+      }
       id
-        ? await updateAdminSpecialty(id, { title: specialtyName })
-        : await createAdminSpecialty({ title: specialtyName });
+        ? await updateAdminSpecialty(id, formData)
+        : await createAdminSpecialty(formData);
       navigate("/admin/specialties", {
         state: {
           result: true,
@@ -37,6 +44,16 @@ const AdminSpecialtyForm = ({ id, name }) => {
       });
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file && file.type.startsWith("image/")) {
+      setSpecialtyImage(file);
+      setImagePreview(URL.createObjectURL(file));
+    } else {
+      console.error("Format no valid");
     }
   };
 
@@ -60,6 +77,27 @@ const AdminSpecialtyForm = ({ id, name }) => {
               onChange={(e) => setSpecialtyName(e.target.value)}
             />
           </Form.Group>
+        </Col>
+
+        <Col xs={12} sm={6} md={6} lg={6}>
+          <Form.Group className="form-group">
+            <Form.Label>Imagen de especialidad</Form.Label>
+            <Form.Control
+              type="file"
+              name="specialty-image"
+              accept="image/*"
+              required={!id}
+              onChange={handleImageChange}
+            />
+          </Form.Group>
+
+          {imagePreview && (
+            <img
+              src={imagePreview}
+              alt="Vista previa de la imagen"
+              style={{ maxWidth: "100%" }}
+            />
+          )}
         </Col>
       </Row>
       <div className="mt-3">

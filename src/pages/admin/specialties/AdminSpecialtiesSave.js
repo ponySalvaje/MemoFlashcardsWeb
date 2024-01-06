@@ -34,7 +34,11 @@ const AdminSpecialtiesSave = () => {
     <Loading />
   ) : (
     <Container>
-      <AdminSpecialtyForm id={id} name={specialty ? specialty.title : ""} />
+      <AdminSpecialtyForm
+        id={id}
+        name={specialty ? specialty.title : ""}
+        iconPath={specialty ? specialty.photo : null}
+      />
     </Container>
   );
 };

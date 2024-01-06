@@ -19,11 +19,15 @@ export const APIMiddleware = {
     }
   },
 
-  async post(url, config = { noAuthToken: false, ...defaultConfig }) {
-    const { params, responseType, data, noAuthToken } = config;
+  async post(
+    url,
+    config = { noAuthToken: false, isFormData: false, ...defaultConfig }
+  ) {
+    const { params, responseType, data, noAuthToken, isFormData } = config;
     const headers = noAuthToken
       ? { "Content-Type": "application/json" }
-      : await getHeaders();
+      : await getHeaders(isFormData);
+
     try {
       const response = await axios.post(url, data, {
         params,
@@ -37,9 +41,9 @@ export const APIMiddleware = {
     }
   },
 
-  async put(url, config = { ...defaultConfig }) {
-    const { params, responseType, data } = config;
-    const headers = await getHeaders();
+  async put(url, config = { isFormData: false, ...defaultConfig }) {
+    const { params, responseType, data, isFormData } = config;
+    const headers = await getHeaders(isFormData);
     try {
       const response = await axios.put(url, data, {
         params,
@@ -67,14 +71,21 @@ export const APIMiddleware = {
   },
 };
 
-async function getHeaders() {
+async function getHeaders(isFormData = false) {
   try {
     const token = await getToken();
     if (token) {
-      return {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      };
+      if (isFormData) {
+        return {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        };
+      } else {
+        return {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        };
+      }
     } else {
       throw new Error("Token not available.");
     }

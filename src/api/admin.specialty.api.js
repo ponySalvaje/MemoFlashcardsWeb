@@ -13,14 +13,14 @@ export function getAdminSpecialty(id) {
   return APIMiddleware.get(url);
 }
 
-export function createAdminSpecialty(specialty) {
+export function createAdminSpecialty(formData) {
   const url = `${ADMIN_SPECIALTIES_URL}`;
-  return APIMiddleware.post(url, { data: { title: specialty.title } });
+  return APIMiddleware.post(url, { data: formData, isFormData: true });
 }
 
-export function updateAdminSpecialty(id, specialty) {
+export function updateAdminSpecialty(id, formData) {
   const url = `${ADMIN_SPECIALTIES_URL}/${id}`;
-  return APIMiddleware.put(url, { data: { title: specialty.title } });
+  return APIMiddleware.put(url, { data: formData, isFormData: true });
 }
 
 export function removeAdminSpecialty(id) {
