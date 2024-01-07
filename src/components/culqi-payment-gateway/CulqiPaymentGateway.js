@@ -36,7 +36,7 @@ const CulqiPaymentGateway = ({ amount, months }) => {
       options={{
         style: {
           logo: "https://www.memoflashcards.com/img/logo.svg",
-          maincolor: "#3b2ebf",
+          maincolor: "#392eb8",
           buttontext: "#ffffff",
           maintext: "#4A4A4A",
           desctext: "#4A4A4A",

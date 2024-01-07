@@ -1,3 +1,7 @@
-#why-us {
+.why-us-normal-padding {
+  padding: 160px 0px 60px 0px;
+}
+
+.why-us-mobile-padding {
   padding: 60px 0px;
 }

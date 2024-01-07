@@ -1,10 +1,12 @@
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import { Fade } from "react-reveal";
 import { isAndroid, isIOS, isMobile } from "react-device-detect";
 import screenshotApp from "../../assets/images/screenshot_app.png";
-import playStoreButton from "../../assets/images/google_plasytore_icon.png";
+import playStoreButton from "../../assets/images/google_playstore_icon.png";
 import appStoreButton from "../../assets/images/app_store_icon.png";
 import "./FeaturesSection.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBrain, faTasks } from "@fortawesome/free-solid-svg-icons";
 
 function FeaturesSection() {
   const androidDownload = () => {
@@ -94,7 +96,11 @@ function FeaturesSection() {
             </Fade>
           </Col>
           {!isMobile && (
-            <Col lg={3} md={3} className="content-item features-col-third">
+            <Col
+              lg={3}
+              md={3}
+              className="content-item features-col-third text-center"
+            >
               <Fade right>
                 <img
                   src={screenshotApp}
@@ -105,6 +111,48 @@ function FeaturesSection() {
             </Col>
           )}
         </Row>
+        {!isMobile && (
+          <Row className="features-card-section">
+            <Col lg={9} md={12}>
+              <Card className="features-card">
+                <Row>
+                  <Col>
+                    <div className="features-card-item">
+                      <p className="features-card-item-title">
+                        Método "Active Recall"
+                        <FontAwesomeIcon
+                          icon={faBrain}
+                          className="features-card-item-icon"
+                        />
+                      </p>
+                      <p>
+                        El método de aprendizaje más eficaz. Usamos el efecto
+                        testing a tu favor. Memo no solo se centra en memorizar,
+                        sino en aprender!
+                      </p>
+                    </div>
+                  </Col>
+                  <Col>
+                    <div className="features-card-item">
+                      <p className="features-card-item-title">
+                        Desirable difficulties
+                        <FontAwesomeIcon
+                          icon={faTasks}
+                          className="features-card-item-icon"
+                        />
+                      </p>
+                      <p>
+                        Ni tan difícil, ni tan fácil. Las flashcards de Memo
+                        buscan siempre el nivel de desafio optimo, que permitirá
+                        acelerar tu aprendizaje.
+                      </p>
+                    </div>
+                  </Col>
+                </Row>
+              </Card>
+            </Col>
+          </Row>
+        )}
       </Container>
     </section>
   );

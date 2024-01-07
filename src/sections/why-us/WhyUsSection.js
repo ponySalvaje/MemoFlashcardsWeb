@@ -24,7 +24,12 @@ function WhyUsSection() {
   ];
 
   return (
-    <section id="why-us">
+    <section
+      id="why-us"
+      className={`${
+        !isMobile ? "why-us-normal-padding" : "why-us-mobile-padding"
+      }`}
+    >
       <Container>
         <div className="mt-4 mb-2 text-center section-title">
           <h2 className="mb-3">¿Por qué elegir Memo?</h2>
