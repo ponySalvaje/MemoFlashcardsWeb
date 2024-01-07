@@ -5,7 +5,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const DataTableFilter = ({ setFilter }) => {
   return (
-    <Form.Group controlId="formSearchTopic">
+    <Form.Group controlId="formSearch">
       <div className="search-bar-group input-group mb-3 align-items-center">
         <FontAwesomeIcon className="search-icon" icon={faSearch} />
         <input

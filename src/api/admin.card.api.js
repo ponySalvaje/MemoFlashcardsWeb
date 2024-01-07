@@ -21,7 +21,7 @@ export function saveAdminCard(card) {
       title: card.title,
       question: card.question,
       answer: card.answer,
-      help: card.answer,
+      help: card.help,
       isFree: card.isFree,
     },
   });
@@ -35,7 +35,7 @@ export function updateAdminCard(id, card) {
       title: card.title,
       question: card.question,
       answer: card.answer,
-      help: card.answer,
+      help: card.help,
       isFree: card.isFree,
     },
   });

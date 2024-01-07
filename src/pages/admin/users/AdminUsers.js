@@ -67,8 +67,10 @@ const AdminUsers = () => {
     let filteredUsers = users;
 
     if (filter && filter.trim() !== "") {
-      filteredUsers = users.filter((user) =>
-        user.email.toLowerCase().includes(filter.toLowerCase())
+      filteredUsers = users.filter(
+        (user) =>
+          user.email.toLowerCase().includes(filter.toLowerCase()) ||
+          user.name.toLowerCase().includes(filter.toLowerCase())
       );
     }
 

@@ -74,7 +74,7 @@ function FeaturesSection() {
                 )}
                 {!isAndroid && !isIOS && (
                   <>
-                    <Row>
+                    <Row className="mb-2">
                       <img
                         src={playStoreButton}
                         className="img-download-app"

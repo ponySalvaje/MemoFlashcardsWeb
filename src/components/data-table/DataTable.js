@@ -27,7 +27,10 @@ const DataTable = ({
           return item.title.toLowerCase().includes(filter.toLowerCase());
         } else if (item.email) {
           // user filter
-          return item.email.toLowerCase().includes(filter.toLowerCase());
+          return (
+            item.email.toLowerCase().includes(filter.toLowerCase()) ||
+            item.name.toLowerCase().includes(filter.toLowerCase())
+          );
         }
         return false;
       }).length
@@ -40,7 +43,11 @@ const DataTable = ({
 
   return (
     <>
-      <DataTableHeader setFilter={setFilter} />
+      <DataTableHeader
+        itemsPerPage={itemsPerPage}
+        setItemsPerPage={setItemsPerPage}
+        setFilter={setFilter}
+      />
       <Table responsive striped bordered hover>
         <thead>
           <tr>
