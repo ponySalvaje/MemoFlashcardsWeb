@@ -15,11 +15,12 @@ export const useSignup = () => {
 
     try {
       const response = await register(data);
-      const token = response.token;
-      const fullName = response.fullName;
-      await storeToken(token);
-      await storeUserData(fullName);
-      dispatch({ type: "LOGIN", payload: token });
+      await storeToken(response.token);
+      await storeUserData({ fullName: response.fullName, role: response.role });
+      dispatch({
+        type: "LOGIN",
+        payload: [response.token, response.fullName, response.role],
+      });
       setIsLoading(false);
     } catch (ex) {
       setIsLoading(false);
