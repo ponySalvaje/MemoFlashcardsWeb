@@ -45,6 +45,7 @@ const Login = () => {
       style={{
         backgroundImage: backgrounds[backgroundIndex],
         transition: "background-image 1s ease-in-out",
+        flex: 1,
       }}
     >
       <Row className="justify-content-center pt-4">

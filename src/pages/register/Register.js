@@ -44,7 +44,13 @@ const Register = () => {
     e.preventDefault();
     setErrors([]);
     if (validateInfo()) {
-      await signup({ name: fullName, email: email, password: password });
+      await signup({
+        name: fullName,
+        email: email,
+        password: password,
+        studentTypeId: semester,
+        universityId: university,
+      });
     }
   };
 
@@ -72,6 +78,7 @@ const Register = () => {
       style={{
         backgroundImage: backgrounds[backgroundIndex],
         transition: "background-image 1s ease-in-out",
+        flex: 1,
       }}
     >
       <Row className="justify-content-center pt-4">

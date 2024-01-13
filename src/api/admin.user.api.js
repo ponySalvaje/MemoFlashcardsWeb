@@ -22,7 +22,7 @@ export function createAdminUser(user) {
       password: user.password,
       type: user.type,
       studentTypeId: user.studentTypeId,
-      universityId: user.university,
+      universityId: user.universityId,
       dueDate: user.dueDate,
     },
   });
@@ -37,7 +37,7 @@ export function updateAdminUser(id, user) {
       password: user.password,
       type: user.type,
       studentTypeId: user.studentTypeId,
-      universityId: user.university,
+      universityId: user.universityId,
       dueDate: user.dueDate,
     },
   });

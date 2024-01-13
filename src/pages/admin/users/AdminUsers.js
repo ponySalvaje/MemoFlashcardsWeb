@@ -83,6 +83,7 @@ const AdminUsers = () => {
         <td>{user.id}</td>
         <td>{user.name.substring(0, 100)}</td>
         <td>{user.email}</td>
+        <td>{user.cardsCount}</td>
         <td className="text-center">
           <p className="element-sticky badge no-margin display-block">
             {user.type === userTypes.free
@@ -116,7 +117,7 @@ const AdminUsers = () => {
           title="Usuarios"
           action="Crear Usuario"
           createButton={() => navigate(`/admin/users/save/`)}
-          headers={["#", "Nombre", "Correo", "Tipo", "Acciones"]}
+          headers={["#", "Nombre", "Correo", "Tarjetas", "Tipo", "Acciones"]}
           renderData={renderUsers}
           itemsCount={users.length}
           itemList={users}
