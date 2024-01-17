@@ -3,8 +3,26 @@ import JoditEditor from "jodit-react";
 import "./RichTextEditor.css";
 
 const RichTextEditor = memo(
-  ({ value, setValue, config }) => {
+  ({ value, setValue }) => {
     const editor = useRef(null);
+
+    const config = {
+      readonly: false,
+      toolbar: true,
+      spellcheck: true,
+      language: "es",
+      toolbarButtonSize: "medium",
+      toolbarAdaptive: true,
+      showCharsCounter: true,
+      showWordsCounter: true,
+      enableDragAndDropFileToEditorenableDragAndDropFileToEditor: true,
+      showXPathInStatusbar: false,
+      askBeforePasteHTML: true,
+      askBeforePasteFromWord: true,
+      uploader: {
+        insertImageAsBase64URI: true,
+      },
+    };
 
     const handleBlur = useCallback(
       (newContent) => {
