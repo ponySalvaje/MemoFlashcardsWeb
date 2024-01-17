@@ -7,8 +7,10 @@ import { useState } from "react";
 const EntityTable = ({
   state,
   title,
-  action,
-  createButton,
+  goBackAction,
+  goBackClick,
+  createAction,
+  createClick,
   headers,
   renderData,
   itemsCount,
@@ -35,7 +37,13 @@ const EntityTable = ({
           <span>{state.message}</span>
         </Alert>
       )}
-      <DataTableTitle title={title} action={action} onClick={createButton} />
+      <DataTableTitle
+        title={title}
+        goBackAction={goBackAction}
+        goBackClick={goBackClick}
+        createAction={createAction}
+        createClick={createClick}
+      />
       <DataTable
         headers={headers}
         renderData={renderData}

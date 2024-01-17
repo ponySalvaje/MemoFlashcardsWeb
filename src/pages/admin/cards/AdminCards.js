@@ -5,6 +5,7 @@ import Loading from "../../../components/loading/Loading";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import TableActionButtons from "../../../components/table-action-buttons/TableActionButtons";
 import EntityTable from "../../../components/entity-table/EntityTable";
+import { getAdminTopic } from "../../../api/admin.topic.api";
 
 const AdminCards = () => {
   const [cards, setCards] = useState([]);
@@ -16,6 +17,8 @@ const AdminCards = () => {
   const [state, setState] = useState(location.state);
   const [item, setItem] = useState(0);
 
+  const [lessonId, setLessonId] = useState(1);
+
   const { id } = useParams();
 
   useEffect(() => {
@@ -25,7 +28,9 @@ const AdminCards = () => {
   const loadCards = async (id) => {
     try {
       const cardsData = (await getAdminCards(id)).data;
+      const topicData = (await getAdminTopic(id)).data;
       setCards(cardsData);
+      setLessonId(topicData.lessonId);
     } catch (error) {
       console.error("Error loading cards:", error);
     } finally {
@@ -119,8 +124,10 @@ const AdminCards = () => {
           <EntityTable
             state={state}
             title="Tarjetas"
-            action="Crear Tarjeta"
-            createButton={() =>
+            goBackAction="Regresar"
+            goBackClick={() => navigate(`/admin/topics/${lessonId}`)}
+            createAction="Crear Tarjeta"
+            createClick={() =>
               navigate(`/admin/cards/save/`, {
                 state: { subjectId: id },
               })

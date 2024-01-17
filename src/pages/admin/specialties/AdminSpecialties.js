@@ -106,8 +106,8 @@ const AdminSpecialties = () => {
         <EntityTable
           state={state}
           title="Especialidades"
-          action="Crear Especialidad"
-          createButton={() => navigate(`/admin/specialties/save/`)}
+          createAction="Crear Especialidad"
+          createClick={() => navigate(`/admin/specialties/save/`)}
           headers={["#", "Especialidad", "Temas", "Acciones"]}
           renderData={renderSpecialties}
           itemsCount={specialties.length}

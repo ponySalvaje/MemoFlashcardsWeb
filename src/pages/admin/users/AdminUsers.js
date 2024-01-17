@@ -115,8 +115,8 @@ const AdminUsers = () => {
         <EntityTable
           state={state}
           title="Usuarios"
-          action="Crear Usuario"
-          createButton={() => navigate(`/admin/users/save/`)}
+          createAction="Crear Usuario"
+          createClick={() => navigate(`/admin/users/save/`)}
           headers={["#", "Nombre", "Correo", "Tarjetas", "Tipo", "Acciones"]}
           renderData={renderUsers}
           itemsCount={users.length}

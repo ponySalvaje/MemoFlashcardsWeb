@@ -18,7 +18,6 @@ const AdminTopicsSave = () => {
     const loadTopic = async (id) => {
       try {
         const topicData = (await getAdminTopic(id)).data;
-        console.log("topicData: ", topicData);
         setTopic(topicData);
       } catch (error) {
         console.error("Error loading topics:", error);

@@ -105,8 +105,10 @@ const AdminTopics = () => {
         <EntityTable
           state={state}
           title="Temas"
-          action="Crear Tema"
-          createButton={() =>
+          goBackAction="Regresar"
+          goBackClick={() => navigate(`/admin/specialties/`)}
+          createAction="Crear Tema"
+          createClick={() =>
             navigate(`/admin/topics/save/`, {
               state: { lessonId: id },
             })
