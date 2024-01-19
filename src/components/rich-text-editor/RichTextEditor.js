@@ -24,7 +24,7 @@ const RichTextEditor = memo(
       },
     };
 
-    const handleBlur = useCallback(
+    const handleChange = useCallback(
       (newContent) => {
         setValue(newContent);
       },
@@ -37,7 +37,7 @@ const RichTextEditor = memo(
         value={value}
         config={config}
         tabIndex={1}
-        onBlur={handleBlur}
+        onChange={handleChange}
       />
     );
   },
