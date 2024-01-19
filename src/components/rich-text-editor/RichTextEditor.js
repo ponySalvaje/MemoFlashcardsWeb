@@ -23,13 +23,17 @@ const RichTextEditor = ({ value, setValue }) => {
     },
   };
 
+  const handleBlur = () => {
+    setValue(editor.current.value);
+  };
+
   return (
     <JoditEditor
       ref={editor}
       value={value}
       config={config}
       tabIndex={1}
-      onBlur={setValue}
+      onBlur={handleBlur}
     />
   );
 };
