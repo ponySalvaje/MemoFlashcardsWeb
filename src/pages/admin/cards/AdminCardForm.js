@@ -92,7 +92,7 @@ const AdminCardForm = ({
               className="premium-card-switch"
               label=""
               defaultChecked={cardPremium}
-              onChange={setCardPremium}
+              onChange={(e) => setCardPremium(e.target.checked)}
             />
           </Form.Group>
         </Col>
