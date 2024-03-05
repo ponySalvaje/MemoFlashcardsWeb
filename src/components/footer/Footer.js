@@ -34,7 +34,7 @@ function Footer() {
                 <a href="/FAQ">Preguntas frecuentes</a>
               </li>
               <li>
-                <a href="/terms-and-conditions">Términos y condiciones</a>
+                <a href="/terms-and-conditions">Política de Privacidad</a>
               </li>
             </ul>
           </Col>

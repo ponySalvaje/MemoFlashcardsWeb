@@ -13,7 +13,6 @@ const TermsAndConditions = () => {
         </div>
         <Card className="shadow-sm mb-4">
           <Card.Body className="terms-conditions-body">
-            <p className="mb-4">Términos y condiciones</p>
             <p className="text-center">
               <strong>
                 <u>Política de Privacidad de Tratamiento de Datos</u>
@@ -61,7 +60,11 @@ const TermsAndConditions = () => {
                   los "<strong>Participantes</strong>", según corresponda) a
                   través del formulario de registro, será almacenada en el Banco
                   de Datos Personales de "<strong>Memo</strong>" de Intercorp
-                  Management, en cumplimiento de la Ley y el Reglamento.
+                  Management, en cumplimiento de la Ley y el Reglamento. El
+                  usuario puede eliminar su cuenta desde la pantalla de perfil
+                  en la aplicación para dispositivos móviles o en la web
+                  solicitando la eliminación de la cuenta a un administrador al
+                  correo memoflashcard.correo@gmail.com.
                 </p>
               </div>
             </article>
@@ -70,11 +73,13 @@ const TermsAndConditions = () => {
                 <li>Datos personales a tratar</li>
               </ol>
               <p align="justify">
-                Para llevar a cabo las finalidades descritas en la presente
-                Política de Privacidad, es obligatorio que el Participante
-                proporcione los datos personales requeridos en el formulario los
-                cuales se detallan a continuación: Nombres, apellidos, correo
-                electrónico, universidad, año de estudio.
+                Para cumplir con los objetivos de esta Política de Privacidad,
+                es obligatorio que el Participante proporcione los siguientes
+                datos personales en el formulario: Nombres, apellidos, correo
+                electrónico, universidad y año de estudio (en rangos). Estos
+                datos son visibles solo en el portal de administración por
+                usuarios autorizados para fines de mantenimiento (Mejorar cuenta
+                a premium de manera manual, eliminación de cuenta, etc.).
               </p>
             </article>
             <article>
@@ -94,9 +99,13 @@ const TermsAndConditions = () => {
                 <li>Plazos de conservación</li>
               </ol>
               <p align="justify">
-                Los datos personales y del negocio proporcionados se conservarán
-                mientras sean necesarios para cumplir con la finalidad por la
-                cual fueron recopilados o hasta que el Participante revoque
+                Los datos personales y del negocio se conservarán mientras sean
+                necesarios para cumplir con la finalidad por la cual fueron
+                recopilados o hasta que el Participante revoque. Los datos
+                recopilados no se eliminan automáticamente; el usuario puede
+                solicitar la eliminación a través del correo
+                memoflashcard.correo@gmail.com o directamente desde la
+                aplicación móvil en el botón "ELIMINAR CUENTA".
               </p>
             </article>
             <article>
@@ -104,10 +113,12 @@ const TermsAndConditions = () => {
                 <li>Transferencia y destinatarios</li>
               </ol>
               <p align="justify">
-                Los datos personales no se transmitirán a terceros, salvo
-                obligación legal. Memo no tiene por objeto comercializar ni
-                transferir información respecto de los datos personales
-                proporcionados por cualquier Participante
+                Los datos personales se comparten con la nube de la empresa
+                Amazon Web Services ubicada en Paseo Castellana, 259 A, Torre
+                Foster, planta 11, 28046 Madrid (Madrid) - España, almacenados
+                en un servicio de base de datos Cloud. Memo no tiene la
+                intención de comercializar ni transferir información de datos
+                personales proporcionados por ningún Participante.
               </p>
             </article>
             <article>
@@ -115,12 +126,12 @@ const TermsAndConditions = () => {
                 <li>Resguardo de la información</li>
               </ol>
               <p align="justify">
-                Memo ha adoptado las medidas de seguridad necesaria para
-                garantizar la protección de los datos personales y de negocio
-                proporcionados por el <b>Participante</b> a fin de evitar su
-                alteración, pérdida, acceso o procesamiento no autorizado por
-                parte de terceros que puedan afectar la información de carácter
-                personal.
+                Memo ha implementado medidas de seguridad necesarias para
+                garantizar la protección de los datos personales y del negocio
+                proporcionados por el Participante, evitando alteraciones,
+                pérdidas, accesos o procesamientos no autorizados por terceros.
+                Estas medidas buscan preservar la información personal contra
+                cualquier amenaza o acceso no autorizado.
               </p>
             </article>
           </Card.Body>
