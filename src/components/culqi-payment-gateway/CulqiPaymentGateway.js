@@ -35,7 +35,7 @@ const CulqiPaymentGateway = ({ amount, months }) => {
       amount={amount * 100}
       options={{
         style: {
-          logo: "https://www.memoflashcards.com/img/logo.svg",
+          logo: "https://www.memoflashcards.com/static/media/logo_main_color.2147571af767db13b6fa.png",
           maincolor: "#392eb8",
           buttontext: "#ffffff",
           maintext: "#4A4A4A",
