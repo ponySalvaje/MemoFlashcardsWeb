@@ -75,12 +75,12 @@ function Footer() {
               </li>
               <li>
                 <a
-                  href="https://api.whatsapp.com/send?phone=51973442591"
+                  href="https://api.whatsapp.com/send?phone=51936280102"
                   target="_blank"
                   rel="noreferrer"
                 >
                   <FontAwesomeIcon size="lg" icon={faWhatsapp} />
-                  <span> +51 973 442 501</span>
+                  <span> +51 936 280 102</span>
                 </a>
               </li>
             </ul>

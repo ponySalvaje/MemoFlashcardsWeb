@@ -21,9 +21,7 @@ function FindCards() {
     try {
       const cardsData = (await searchCards()).data;
       setCards(cardsData);
-      console.log("cards: ", cardsData);
     } catch (error) {
-      console.log("error: ", error);
     } finally {
       setLoading(false);
     }
