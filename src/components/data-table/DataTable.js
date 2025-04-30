@@ -8,6 +8,7 @@ const DataTable = ({
   renderData,
   itemsCount,
   itemList,
+  handleCards,
   handleView,
   handleEdit,
   handleDelete,
@@ -63,7 +64,8 @@ const DataTable = ({
             handleView,
             handleEdit,
             handleDelete,
-            filter
+            filter,
+            handleCards
           )}
         </tbody>
       </Table>

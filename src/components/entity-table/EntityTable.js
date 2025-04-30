@@ -15,6 +15,7 @@ const EntityTable = ({
   renderData,
   itemsCount,
   itemList,
+  cardsButton,
   viewButton,
   editButton,
   deleteButton,
@@ -49,6 +50,7 @@ const EntityTable = ({
         renderData={renderData}
         itemsCount={itemsCount}
         itemList={itemList}
+        handleCards={cardsButton}
         handleView={viewButton}
         handleEdit={editButton}
         handleDelete={(id) => {

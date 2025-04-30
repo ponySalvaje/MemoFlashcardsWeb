@@ -63,7 +63,8 @@ const AdminTopics = () => {
     handleView,
     handleEdit,
     handleDelete,
-    filter
+    filter,
+    handleCards
   ) => {
     let filteredTopics = topics;
 
@@ -88,6 +89,7 @@ const AdminTopics = () => {
         <td>
           <TableActionButtons
             itemId={topic.id}
+            handleCards={handleCards}
             handleView={handleView}
             handleEdit={handleEdit}
             handleDelete={handleDelete}
@@ -117,6 +119,7 @@ const AdminTopics = () => {
           renderData={renderTopics}
           itemsCount={topics.length}
           itemList={topics}
+          cardsButton={(id) => navigate(`/admin/multiple-choice-cards/${id}`)}
           viewButton={(id) => navigate(`/admin/cards/${id}`)}
           editButton={(id) => navigate(`/admin/topics/save/${id}`)}
           deleteButton={deleteTopic}

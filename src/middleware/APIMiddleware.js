@@ -41,6 +41,22 @@ export const APIMiddleware = {
     }
   },
 
+  async patch(url, config = { isFormData: false, ...defaultConfig }) {
+    const { params, responseType, data, isFormData } = config;
+    const headers = await getHeaders(isFormData);
+    try {
+      const response = await axios.patch(url, data, {
+        params,
+        headers,
+        responseType,
+      });
+      return response.data;
+    } catch (error) {
+      console.error("Error in PATCH request:", error);
+      throw error;
+    }
+  },
+
   async put(url, config = { isFormData: false, ...defaultConfig }) {
     const { params, responseType, data, isFormData } = config;
     const headers = await getHeaders(isFormData);

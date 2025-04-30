@@ -1,4 +1,5 @@
 const BASE_URL = "https://api.memoflashcards.com";
+const MOBILE_URL = "https://mobile.memoflashcards.com";
 
 export const apiUrls = {
   BASE_URL,
@@ -12,4 +13,5 @@ export const apiUrls = {
   ADMIN_TOPICS_URL: `${BASE_URL}/admin/subjects`,
   ADMIN_CARDS_URL: `${BASE_URL}/admin/cards`,
   ADMIN_USERS_URL: `${BASE_URL}/admin/users`,
+  ADMIN_MC_CARDS_URL: `${MOBILE_URL}/mc-cards`,
 };

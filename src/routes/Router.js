@@ -29,6 +29,8 @@ import AdminUsersSave from "../pages/admin/users/AdminUserSave";
 import AdminProtected from "./AdminProtected";
 import ForgotPassword from "../pages/forgot-password/ForgotPassword";
 import ResetPassword from "../pages/reset-password/ResetPassword";
+import AdminMCCards from "../pages/admin/mc-cards/AdminMCCards";
+import AdminMCCardsSave from "../pages/admin/mc-cards/AdminMCCardsSave";
 
 const router = createBrowserRouter([
   {
@@ -172,6 +174,22 @@ const router = createBrowserRouter([
     element: (
       <AdminProtected>
         <AdminPageContainer element={<AdminCardsSave />} />
+      </AdminProtected>
+    ),
+  },
+  {
+    path: "/admin/multiple-choice-cards/:id",
+    element: (
+      <AdminProtected>
+        <AdminPageContainer element={<AdminMCCards />} />
+      </AdminProtected>
+    ),
+  },
+  {
+    path: "/admin/multiple-choice-cards/save/:id?",
+    element: (
+      <AdminProtected>
+        <AdminPageContainer element={<AdminMCCardsSave />} />
       </AdminProtected>
     ),
   },

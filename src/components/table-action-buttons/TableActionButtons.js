@@ -1,4 +1,9 @@
-import { faEdit, faEye, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEdit,
+  faEye,
+  faIdCard,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Row, Col } from "react-bootstrap";
 import "./TableActionButton.css";
@@ -9,9 +14,20 @@ const TableActionButtons = ({
   handleView,
   handleEdit,
   handleDelete,
+  handleCards,
 }) => {
   return (
     <Row className="justify-content-center text-center no-margin">
+      {handleCards && (
+        <Col>
+          <FontAwesomeIcon
+            onClick={() => handleCards(itemId)}
+            size="lg"
+            icon={faIdCard}
+            className="table-action-button"
+          />
+        </Col>
+      )}
       {showView && (
         <Col>
           <FontAwesomeIcon
