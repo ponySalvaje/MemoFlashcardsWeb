@@ -14,4 +14,5 @@ export const apiUrls = {
   ADMIN_CARDS_URL: `${BASE_URL}/admin/cards`,
   ADMIN_USERS_URL: `${BASE_URL}/admin/users`,
   ADMIN_MC_CARDS_URL: `${MOBILE_URL}/mc-cards`,
+  ADMIN_DAILY_CHALLENGE_URL: `${MOBILE_URL}/daily-challenge`,
 };

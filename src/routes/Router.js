@@ -31,6 +31,7 @@ import ForgotPassword from "../pages/forgot-password/ForgotPassword";
 import ResetPassword from "../pages/reset-password/ResetPassword";
 import AdminMCCards from "../pages/admin/mc-cards/AdminMCCards";
 import AdminMCCardsSave from "../pages/admin/mc-cards/AdminMCCardsSave";
+import AdminDailyChallenge from "../pages/admin/daily-challenge/AdminDailyChallenge";
 
 const router = createBrowserRouter([
   {
@@ -206,6 +207,14 @@ const router = createBrowserRouter([
     element: (
       <AdminProtected>
         <AdminPageContainer element={<AdminUsersSave />} />
+      </AdminProtected>
+    ),
+  },
+  {
+    path: "admin/daily-challenge",
+    element: (
+      <AdminProtected>
+        <AdminPageContainer element={<AdminDailyChallenge />} />
       </AdminProtected>
     ),
   },
