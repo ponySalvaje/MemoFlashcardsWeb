@@ -1,4 +1,9 @@
-import { faHouseMedical, faMedal, faUsers } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHouseMedical,
+  faMedal,
+  faNewspaper,
+  faUsers,
+} from "@fortawesome/free-solid-svg-icons";
 import whiteLogo from "../../assets/logo/logo_white.png";
 import SidebarItem from "../sidebar-item/SidebarItem";
 import "./Sidebar.css";
@@ -48,6 +53,12 @@ const Sidebar = ({ element }) => {
                 icon={faUsers}
                 url="/admin/users"
                 active={isActive("/admin/users")}
+              />
+              <SidebarItem
+                name="Noticias"
+                icon={faNewspaper}
+                url="/admin/news"
+                active={isActive("/admin/news")}
               />
               <SidebarItem
                 name="Reto diario"

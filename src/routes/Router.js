@@ -32,6 +32,8 @@ import ResetPassword from "../pages/reset-password/ResetPassword";
 import AdminMCCards from "../pages/admin/mc-cards/AdminMCCards";
 import AdminMCCardsSave from "../pages/admin/mc-cards/AdminMCCardsSave";
 import AdminDailyChallenge from "../pages/admin/daily-challenge/AdminDailyChallenge";
+import AdminNews from "../pages/admin/news/AdminNews";
+import AdminNewsSave from "../pages/admin/news/AdminNewsSave";
 
 const router = createBrowserRouter([
   {
@@ -215,6 +217,22 @@ const router = createBrowserRouter([
     element: (
       <AdminProtected>
         <AdminPageContainer element={<AdminDailyChallenge />} />
+      </AdminProtected>
+    ),
+  },
+  {
+    path: "/admin/news",
+    element: (
+      <AdminProtected>
+        <AdminPageContainer element={<AdminNews />} />
+      </AdminProtected>
+    ),
+  },
+  {
+    path: "/admin/news/save/:id?",
+    element: (
+      <AdminProtected>
+        <AdminPageContainer element={<AdminNewsSave />} />
       </AdminProtected>
     ),
   },
