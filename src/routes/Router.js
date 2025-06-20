@@ -34,6 +34,8 @@ import AdminMCCardsSave from "../pages/admin/mc-cards/AdminMCCardsSave";
 import AdminDailyChallenge from "../pages/admin/daily-challenge/AdminDailyChallenge";
 import AdminNews from "../pages/admin/news/AdminNews";
 import AdminNewsSave from "../pages/admin/news/AdminNewsSave";
+import AdminSuggestions from "../pages/admin/suggestions/AdminSuggestions";
+import AdminReportedIssues from "../pages/admin/reported-issues/AdminReportedIssues";
 
 const router = createBrowserRouter([
   {
@@ -233,6 +235,22 @@ const router = createBrowserRouter([
     element: (
       <AdminProtected>
         <AdminPageContainer element={<AdminNewsSave />} />
+      </AdminProtected>
+    ),
+  },
+  {
+    path: "/admin/suggestions",
+    element: (
+      <AdminProtected>
+        <AdminPageContainer element={<AdminSuggestions />} />
+      </AdminProtected>
+    ),
+  },
+  {
+    path: "/admin/reported-issues",
+    element: (
+      <AdminProtected>
+        <AdminPageContainer element={<AdminReportedIssues />} />
       </AdminProtected>
     ),
   },

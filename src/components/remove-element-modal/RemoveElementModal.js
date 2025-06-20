@@ -14,6 +14,7 @@ const RemoveElementModal = ({
   modalHeader,
   modalBody,
   removeElement,
+  deleteBtnLabel,
 }) => {
   return (
     <Modal
@@ -31,7 +32,7 @@ const RemoveElementModal = ({
           Cancelar
         </Button>
         <Button variant="main" onClick={removeElement}>
-          Eliminar
+          {deleteBtnLabel ?? "Eliminar"}
         </Button>
       </ModalFooter>
     </Modal>

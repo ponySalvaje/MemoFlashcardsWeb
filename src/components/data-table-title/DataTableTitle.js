@@ -25,12 +25,14 @@ const DataTableTitle = ({
                 </Button>
               </Col>
             )}
-            <Col>
-              <Button variant="main" onClick={createClick}>
-                <FontAwesomeIcon icon={faAdd} />
-                <span className="m-l-5">{createAction}</span>
-              </Button>
-            </Col>
+            {createClick && (
+              <Col>
+                <Button variant="main" onClick={createClick}>
+                  <FontAwesomeIcon icon={faAdd} />
+                  <span className="m-l-5">{createAction}</span>
+                </Button>
+              </Col>
+            )}
           </Row>
         </Col>
       </Row>

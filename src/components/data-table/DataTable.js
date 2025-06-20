@@ -12,6 +12,7 @@ const DataTable = ({
   handleView,
   handleEdit,
   handleDelete,
+  handleCheck,
 }) => {
   const [page, setPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -29,8 +30,8 @@ const DataTable = ({
         } else if (item.email) {
           // user filter
           return (
-            item.email.toLowerCase().includes(filter.toLowerCase()) ||
-            item.name.toLowerCase().includes(filter.toLowerCase())
+            item.email?.toLowerCase().includes(filter.toLowerCase()) ||
+            item.name?.toLowerCase().includes(filter.toLowerCase())
           );
         }
         return false;
@@ -65,7 +66,8 @@ const DataTable = ({
             handleEdit,
             handleDelete,
             filter,
-            handleCards
+            handleCards,
+            handleCheck
           )}
         </tbody>
       </Table>

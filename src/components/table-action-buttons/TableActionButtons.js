@@ -1,4 +1,5 @@
 import {
+  faCircleCheck,
   faEdit,
   faEye,
   faIdCard,
@@ -15,6 +16,7 @@ const TableActionButtons = ({
   handleEdit,
   handleDelete,
   handleCards,
+  handleCheck,
 }) => {
   return (
     <Row className="justify-content-center text-center no-margin">
@@ -38,22 +40,36 @@ const TableActionButtons = ({
           />
         </Col>
       )}
-      <Col>
-        <FontAwesomeIcon
-          onClick={() => handleEdit(itemId)}
-          size="lg"
-          icon={faEdit}
-          className="table-action-button"
-        />
-      </Col>
-      <Col>
-        <FontAwesomeIcon
-          onClick={() => handleDelete(itemId)}
-          size="lg"
-          icon={faTrash}
-          className="table-action-button"
-        />
-      </Col>
+      {handleEdit && (
+        <Col>
+          <FontAwesomeIcon
+            onClick={() => handleEdit(itemId)}
+            size="lg"
+            icon={faEdit}
+            className="table-action-button"
+          />
+        </Col>
+      )}
+      {handleDelete && (
+        <Col>
+          <FontAwesomeIcon
+            onClick={() => handleDelete(itemId)}
+            size="lg"
+            icon={faTrash}
+            className="table-action-button"
+          />
+        </Col>
+      )}
+      {handleCheck && (
+        <Col>
+          <FontAwesomeIcon
+            onClick={() => handleCheck(itemId)}
+            size="lg"
+            icon={faCircleCheck}
+            className="table-action-button"
+          />
+        </Col>
+      )}
     </Row>
   );
 };

@@ -22,6 +22,7 @@ const EntityTable = ({
   deleteHeader,
   deleteMessage,
   setItem,
+  deleteBtnLabel,
 }) => {
   const [showRemove, setShowRemove] = useState(false);
 
@@ -57,12 +58,17 @@ const EntityTable = ({
           setItem(id);
           setShowRemove(true);
         }}
+        handleCheck={(id) => {
+          setItem(id);
+          setShowRemove(true);
+        }}
       />
       <RemoveElementModal
         showRemoveModal={showRemove}
         handleCloseRemoveModal={() => setShowRemove(false)}
         modalHeader={deleteHeader}
         modalBody={deleteMessage}
+        deleteBtnLabel={deleteBtnLabel}
         removeElement={() => {
           setShowRemove(false);
           deleteButton();

@@ -16,4 +16,6 @@ export const apiUrls = {
   ADMIN_MC_CARDS_URL: `${MOBILE_URL}/mc-cards`,
   ADMIN_DAILY_CHALLENGE_URL: `${MOBILE_URL}/daily-challenge`,
   ADMIN_NEWS_URL: `${MOBILE_URL}/news`,
+  ADMIN_SUGGESTIONS_URL: `${MOBILE_URL}/suggestions`,
+  ADMIN_REPORTED_ISSUES_URL: `${MOBILE_URL}/reported-issues`,
 };

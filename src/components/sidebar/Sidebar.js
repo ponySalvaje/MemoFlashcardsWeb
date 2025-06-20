@@ -1,6 +1,8 @@
 import {
+  faCircleRadiation,
   faHouseMedical,
   faMedal,
+  faMessage,
   faNewspaper,
   faUsers,
 } from "@fortawesome/free-solid-svg-icons";
@@ -59,6 +61,18 @@ const Sidebar = ({ element }) => {
                 icon={faNewspaper}
                 url="/admin/news"
                 active={isActive("/admin/news")}
+              />
+              <SidebarItem
+                name="Sugerencias"
+                icon={faMessage}
+                url="/admin/suggestions"
+                active={isActive("/admin/suggestions")}
+              />
+              <SidebarItem
+                name="Problemas"
+                icon={faCircleRadiation}
+                url="/admin/reported-issues"
+                active={isActive("/admin/reported-issues")}
               />
               <SidebarItem
                 name="Reto diario"
