@@ -9,14 +9,14 @@ import {
 const AdminMCCardForm = ({ id, subjectId, question, answers }) => {
   const [cardQuestion, setCardQuestion] = useState(question);
   const [correctAnswer, setCorrectAnswer] = useState("");
-  const [incorrectAnswers, setIncorrectAnswers] = useState(["", "", "", ""]);
+  const [incorrectAnswers, setIncorrectAnswers] = useState(["", "", ""]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const correct = answers.find((a) => a.isCorrect);
     const incorrect = answers.filter((a) => !a.isCorrect).map((a) => a.text);
     if (correct) setCorrectAnswer(correct.text);
-    if (incorrect.length === 4) setIncorrectAnswers(incorrect);
+    if (incorrect.length === 3) setIncorrectAnswers(incorrect);
   }, [answers]);
 
   const navigate = useNavigate();

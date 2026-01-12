@@ -74,12 +74,14 @@ const Sidebar = ({ element }) => {
                 url="/admin/reported-issues"
                 active={isActive("/admin/reported-issues")}
               />
+              {/*
               <SidebarItem
                 name="Reto diario"
                 icon={faMedal}
                 url="/admin/daily-challenge"
                 active={isActive("/admin/daily-challenge")}
               />
+              */}
             </ul>
             <hr />
             <div>
