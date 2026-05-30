@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "memoflashcards-web"
-  }
+    "default": "memoflashcardsapp"
+  },
+  "targets": {},
+  "etags": {}
 }

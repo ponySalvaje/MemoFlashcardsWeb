@@ -13,38 +13,8 @@ export const plans = [
   },
   {
     id: 2,
-    planName: "Plan Mensual",
-    price: 25,
-    months: 1,
-    frequency: "1 mes",
-    advantages: [
-      "300 mazos desbloqueados",
-      "Algoritmo de repetición espaciada",
-      "Tarjetas de imágenes médicas",
-      'Tarjetas "casos clínicos"',
-      'Tarjetas "perlas clínicas"',
-      "Tarjetas de alto rendimiento para exámenes EsSalud/ENAM/RM",
-    ],
-  },
-  {
-    id: 3,
-    planName: "Plan Trimestral",
-    price: 60,
-    months: 3,
-    frequency: "3 meses",
-    advantages: [
-      "300 mazos desbloqueados",
-      "Algoritmo de repetición espaciada",
-      "Tarjetas de imágenes médicas",
-      'Tarjetas "casos clínicos"',
-      'Tarjetas "perlas clínicas"',
-      "Tarjetas de alto rendimiento para exámenes EsSalud/ENAM/RM",
-    ],
-  },
-  {
-    id: 4,
     planName: "Plan Semestral",
-    price: 100,
+    price: 169.9,
     months: 6,
     frequency: "6 meses",
     advantages: [
@@ -57,9 +27,9 @@ export const plans = [
     ],
   },
   {
-    id: 5,
+    id: 3,
     planName: "Plan Anual",
-    price: 180,
+    price: 249.9,
     months: 12,
     frequency: "1 año",
     advantages: [
