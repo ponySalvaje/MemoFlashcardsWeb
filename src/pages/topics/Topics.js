@@ -1,4 +1,4 @@
-import { Container, Row, Col } from "react-bootstrap";
+import { Alert, Container, Row, Col } from "react-bootstrap";
 import "./Topics.css";
 import CardTopic from "../../components/card-topic/CardTopic";
 import { getTopics } from "../../api/topics.api";
@@ -9,6 +9,7 @@ import Loading from "../../components/loading/Loading";
 function Topics() {
   const [topics, setTopics] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
   const { id } = useParams();
   const location = useLocation();
   const specialtyName = location.state && location.state.specialtyName;
@@ -16,10 +17,13 @@ function Topics() {
   useEffect(() => {
     const loadTopics = async () => {
       try {
-        const topicsData = (await getTopics(id)).data.content;
+        setLoadError(false);
+        const topicsData = await getTopics(id);
         setTopics(topicsData);
       } catch (error) {
         console.error("Error loading topics:", error);
+        setTopics([]);
+        setLoadError(true);
       } finally {
         setLoading(false);
       }
@@ -41,21 +45,29 @@ function Topics() {
                 {topics.length} temas disponibles.
               </p>
             </div>
-            <Row xs={2} sm={2} md={3} lg={4} className="g-4">
-              {topics.map((topic) => (
-                <Col key={topic.id}>
-                  <CardTopic
-                    title={topic.title}
-                    freeQuantity={topic.free}
-                    premiumQuantity={topic.premium}
-                    id={topic.id}
-                    relatedTopics={topics.filter(
-                      (myTopic) => myTopic.id !== topic.id
-                    )}
-                  />
-                </Col>
-              ))}
-            </Row>
+            {loadError ? (
+              <Alert variant="danger" role="alert">
+                No pudimos cargar los temas. Por favor, inténtalo nuevamente.
+              </Alert>
+            ) : topics.length === 0 ? (
+              <p className="text-center">No hay temas disponibles.</p>
+            ) : (
+              <Row xs={2} sm={2} md={3} lg={4} className="g-4">
+                {topics.map((topic) => (
+                  <Col key={topic.id}>
+                    <CardTopic
+                      title={topic.title}
+                      freeQuantity={topic.free}
+                      premiumQuantity={topic.premium}
+                      id={topic.id}
+                      relatedTopics={topics.filter(
+                        (myTopic) => myTopic.id !== topic.id
+                      )}
+                    />
+                  </Col>
+                ))}
+              </Row>
+            )}
           </>
         )}
       </Container>
