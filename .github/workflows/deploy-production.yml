@@ -117,6 +117,18 @@ jobs:
             --output text)"
           test "$uploaded_key" = "$entry_key"
 
+          object_metadata="$(aws s3api head-object \
+            --bucket "$S3_BUCKET" \
+            --key "$entry_key" \
+            --query '[ContentLength,ContentType,StorageClass,ServerSideEncryption]' \
+            --output text)"
+          echo "::notice::Entry bundle metadata: $object_metadata"
+
+          downloaded_bundle="$(mktemp)"
+          aws s3 cp "s3://$S3_BUCKET/$entry_key" "$downloaded_bundle" \
+            --only-show-errors
+          cmp --silent "$entry_bundle" "$downloaded_bundle"
+
       - name: Invalidate CloudFront cache
         if: steps.deployment_config.outputs.configured == 'true'
         run: >-
