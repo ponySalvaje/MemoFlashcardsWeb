@@ -96,6 +96,27 @@ jobs:
             --cache-control "public, max-age=31536000, immutable" \
             --only-show-errors
 
+      - name: Verify entry bundle in S3
+        if: steps.deployment_config.outputs.configured == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          entry_bundle="$(find build/static/js -maxdepth 1 -type f -name 'main.*.js' -print -quit)"
+          test -n "$entry_bundle"
+          entry_key="${entry_bundle#build/}"
+
+          aws s3 cp "$entry_bundle" "s3://$S3_BUCKET/$entry_key" \
+            --cache-control "public, max-age=31536000, immutable" \
+            --only-show-errors
+
+          uploaded_key="$(aws s3api list-objects-v2 \
+            --bucket "$S3_BUCKET" \
+            --prefix "$entry_key" \
+            --query 'Contents[0].Key' \
+            --output text)"
+          test "$uploaded_key" = "$entry_key"
+
       - name: Invalidate CloudFront cache
         if: steps.deployment_config.outputs.configured == 'true'
         run: >-
