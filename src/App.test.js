@@ -1,8 +1,7 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { apiUrls } from "./common/constants/apiUrl";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test("uses the NestJS backend for every API group", () => {
+  Object.values(apiUrls).forEach((url) => {
+    expect(url).toMatch(/^https:\/\/mobile\.memoflashcards\.com/);
+  });
 });

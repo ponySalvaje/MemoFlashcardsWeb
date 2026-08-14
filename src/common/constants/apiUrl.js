@@ -1,5 +1,5 @@
-const BASE_URL = "https://api.memoflashcards.com";
-const MOBILE_URL = "https://mobile.memoflashcards.com";
+const BASE_URL =
+  process.env.REACT_APP_API_BASE_URL || "https://mobile.memoflashcards.com";
 
 export const apiUrls = {
   BASE_URL,
@@ -13,9 +13,9 @@ export const apiUrls = {
   ADMIN_TOPICS_URL: `${BASE_URL}/admin/subjects`,
   ADMIN_CARDS_URL: `${BASE_URL}/admin/cards`,
   ADMIN_USERS_URL: `${BASE_URL}/admin/users`,
-  ADMIN_MC_CARDS_URL: `${MOBILE_URL}/mc-cards`,
-  ADMIN_DAILY_CHALLENGE_URL: `${MOBILE_URL}/daily-challenge`,
-  ADMIN_NEWS_URL: `${MOBILE_URL}/news`,
-  ADMIN_SUGGESTIONS_URL: `${MOBILE_URL}/suggestions`,
-  ADMIN_REPORTED_ISSUES_URL: `${MOBILE_URL}/reported-issues`,
+  ADMIN_MC_CARDS_URL: `${BASE_URL}/mc-cards`,
+  ADMIN_DAILY_CHALLENGE_URL: `${BASE_URL}/daily-challenge`,
+  ADMIN_NEWS_URL: `${BASE_URL}/news`,
+  ADMIN_SUGGESTIONS_URL: `${BASE_URL}/suggestions`,
+  ADMIN_REPORTED_ISSUES_URL: `${BASE_URL}/reported-issues`,
 };
