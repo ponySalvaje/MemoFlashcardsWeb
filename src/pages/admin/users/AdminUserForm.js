@@ -6,6 +6,7 @@ import { universities } from "../../../common/constants/universities";
 import { semesters } from "../../../common/constants/semesters";
 import { roles } from "../../../common/constants/roles";
 import { userTypes } from "../../../common/constants/userTypes";
+import { toApiDueDate, toDisplayDueDate } from "./dueDate";
 
 const AdminUserForm = ({
   id,
@@ -21,7 +22,8 @@ const AdminUserForm = ({
   const [userSemester, setUserSemester] = useState(semester);
   const [userUniversity, setUserUniversity] = useState(university);
   const [userRole, setUserRole] = useState(role);
-  const [userDueDate, setUserDueDate] = useState(dueDate);
+  const [userDueDate, setUserDueDate] = useState(() => toDisplayDueDate(dueDate));
+  const [dueDateError, setDueDateError] = useState(false);
 
   const [loading, setLoading] = useState(false);
 
@@ -37,7 +39,7 @@ const AdminUserForm = ({
             type: userRole,
             studentTypeId: userSemester,
             universityId: userUniversity,
-            dueDate: userDueDate,
+            dueDate: toApiDueDate(userDueDate),
           })
         : await createAdminUser({
             name: userName,
@@ -45,7 +47,7 @@ const AdminUserForm = ({
             type: userRole,
             studentTypeId: userSemester,
             universityId: userUniversity,
-            dueDate: userDueDate,
+            dueDate: toApiDueDate(userDueDate),
           });
       navigate("/admin/users", {
         state: {
@@ -69,6 +71,11 @@ const AdminUserForm = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (userRole === userTypes.pro && !toApiDueDate(userDueDate)) {
+      setDueDateError(true);
+      e.currentTarget.elements.namedItem("user-due-date").focus();
+      return;
+    }
     handleSaveUser();
   };
 
@@ -162,15 +169,27 @@ const AdminUserForm = ({
         </Col>
         {userRole === userTypes.pro && (
           <Col xs={12} sm={6} md={6} lg={6}>
-            <Form.Group className="form-group">
+            <Form.Group className="form-group" controlId="user-due-date">
               <Form.Label>Fecha de vencimiento</Form.Label>
               <Form.Control
-                type="date"
+                type="text"
                 required
                 name="user-due-date"
+                placeholder="dd/MM/yyyy"
+                maxLength={10}
                 value={userDueDate}
-                onChange={(e) => setUserDueDate(e.target.value)}
+                isInvalid={dueDateError}
+                aria-invalid={dueDateError}
+                aria-describedby="user-due-date-format user-due-date-error"
+                onChange={(e) => {
+                  setUserDueDate(e.target.value);
+                  setDueDateError(false);
+                }}
               />
+              <Form.Text id="user-due-date-format">dd/MM/yyyy</Form.Text>
+              <Form.Control.Feedback type="invalid" id="user-due-date-error">
+                Ingresa una fecha válida en formato dd/MM/yyyy.
+              </Form.Control.Feedback>
             </Form.Group>
           </Col>
         )}
